@@ -16,7 +16,7 @@ namespace BigIndianArts.Views
         {
             InitializeComponent();
             string[] vs = { "a", "b", "a", "b", "a", "b", "b", "a", "b", "a", "b", "b", "a", "b", "a", "b", "b", "a", "b", "a", "b" };
-            cv_services.ItemsSource = vs;
+            //cv_services.ItemsSource = vs;
         }
 
         private void ServiceListItem_Tapped(object sender, EventArgs e)
