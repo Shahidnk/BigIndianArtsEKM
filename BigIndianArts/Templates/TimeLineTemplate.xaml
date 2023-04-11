@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+          x:Class="BigIndianArts.Templates.TimeLineTemplate">
+    <ViewCell.View>
+
+
+        <Grid Margin="8,0,15,0"
+              Padding="0"
+              ColumnSpacing="0"
+              ColumnDefinitions="30,40,*">
+            <StackLayout Orientation="Vertical"
+                         IsVisible="{Binding DateVisibility}"
+                         Spacing="0"
+                         Margin="0,5,0,0"
+                         Padding="0"
+                         HorizontalOptions="Start"
+                         WidthRequest="30"
+                         Grid.Column="0">
+                <Label HorizontalOptions="Center"
+                       Text="{Binding Time, StringFormat='{0:dd}'}"
+                       Margin="0,0,0,0"
+                       FontSize="15" />
+                <Label HorizontalOptions="Center"
+                       Text="{Binding Time, StringFormat='{0:MMM}'}"
+                       Margin="0,-4,0,0"
+                       FontSize="13" />
+            </StackLayout>
+
+
+            <Grid ColumnSpacing="0"
+                  RowSpacing="0"
+                  Margin="2,0,0,0"
+                  Padding="0"
+                  WidthRequest="30"
+                  Grid.Column="1"
+                  HorizontalOptions="Start"
+                  VerticalOptions="FillAndExpand">
+
+                <BoxView Margin="{OnPlatform Android='0,0,0,-10',iOS='0,0,0,0'}"
+                         HorizontalOptions="Center"
+                         BackgroundColor="LightGray"
+                         VerticalOptions="FillAndExpand"
+                         WidthRequest="1"
+                         IsVisible="{Binding LineVisibility}" />
+                <Grid Margin="0"
+                      Padding="0"
+                      ColumnSpacing="0"
+                      RowSpacing="0"
+                      VerticalOptions="Start">
+
+                    <Image Source="{Binding StepIcon}"
+                           WidthRequest="31"
+                           Margin="0,0,0,0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+
+                    <Image Source="{Binding StepIconTop}"
+                           WidthRequest="17"
+                           Margin="0,0,0,0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding StepIconTopVisibility}" />
+
+                    <Label Text="{Binding StepNumber}"
+                           FontSize="15"
+                           TextColor="{Binding StepNumberColor}"
+                           Margin="0,0,0,0"
+                           Padding="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding StepNumberVisiblity}" />
+                </Grid>
+            </Grid>
+
+
+            <pancakeView:PancakeView BackgroundColor="White"
+                                     Padding="10,5,15,13"
+                                    
+                                     Margin="0,10,0,5"
+                                     CornerRadius="1,10,10,10"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Start"
+                                     Grid.Column="2">
+
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Margin="5,0,0,0"
+                             Spacing="3"
+                             Grid.Column="0"
+                             Padding="0,7,0,0">
+                    <StackLayout Orientation="Horizontal"
+                                 IsVisible="{Binding DateVisibility}">
+                        <!--<Frame BackgroundColor="{StaticResource ThemeLightGreenColor}" HasShadow="False"-->
+                        <!--<Frame BackgroundColor="Transparent"
+                               HasShadow="False"
+                               Margin="0,0,0,6"
+                               Padding="1"
+                               HeightRequest="17"
+                               WidthRequest="70"
+                               CornerRadius="15"
+                               HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding status}"
+                                   TextColor="Transparent"
+                                   FontSize="12"
+                                   HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="CenterAndExpand" />
+                        </Frame>-->
+
+                        <StackLayout Orientation="Horizontal"
+                                     IsVisible="{Binding DateVisibility}"
+                                     HorizontalOptions="EndAndExpand"
+                                     Margin="0,0,0,2">
+                            <Image Source="time"
+                                   HeightRequest="13"
+                                   Margin="0,-2,-2,0"
+                                   HorizontalOptions="End" />
+                            <Label Text="{Binding Time, StringFormat='{0:dd MMM yyyy, HH:mm:ss}'}"
+                                   Margin="0"
+                                   Padding="0"
+                                   LineHeight=".9"
+                                   FontSize="14"
+                                   TextColor="{StaticResource TitleTextColor}"
+                                   Style="{StaticResource BodyText}"
+                                   HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <Label Margin="0,0,0,0"
+                           Padding="0"
+                           HorizontalOptions="FillAndExpand"><!--IsVisible="{Binding RoleXText, Converter={StaticResource nullToVisibilityConverter}}"-->
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Role: "
+                                      Style="{StaticResource BodyText}"
+                                      FontSize="14" />
+                                <Span Text="{Binding RoleXText}"
+                                      Style="{StaticResource TitleText}"
+                                      FontSize="14" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label Margin="0"
+                           Padding="0"
+                           LineHeight=".9"
+                           FontAttributes="Bold"
+                           TextColor="Gray"
+                           HorizontalOptions="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding ActionText1}"
+                                      FontSize="14"
+                                      Style="{StaticResource BodyText}" />
+                                <Span Text="{Binding ActionTextEmpoyeeName}"
+                                      FontSize="14"
+                                      Style="{StaticResource TitleText}" />
+                                <Span Text="{Binding ActionText2}"
+                                      FontSize="14"
+                                      Style="{StaticResource BodyText}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label Margin="0"
+                           Padding="0"
+                           LineHeight=".9"
+                           HorizontalOptions="FillAndExpand"><!--IsVisible="{Binding ByXEmployeeName, Converter={StaticResource nullToVisibilityConverter}}"-->
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding ByXText}"
+                                      FontSize="14"
+                                      Style="{StaticResource BodyText}" />
+                                <Span Text="{Binding ByXEmployeeName}"
+                                      FontSize="14"
+                                      Style="{StaticResource TitleText}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label Text="{Binding TATtext}"
+                           Margin="0"
+                           Padding="0"
+                           LineHeight=".9"
+                           FontSize="14"
+                           Style="{StaticResource TitleText}"
+                           HorizontalOptions="FillAndExpand" /> <!--IsVisible="{Binding TATtext, Converter={StaticResource nullToVisibilityConverter}}"-->
+
+                </StackLayout>
+            </pancakeView:PancakeView>
+        </Grid>
+
+        <!--</DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+
+        </StackLayout>-->
+    </ViewCell.View>
+</ViewCell>

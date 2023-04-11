@@ -1,0 +1,736 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="BigIndianArts.Views.CompletedTasks"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+             xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+             
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:utility11="clr-namespace:BigIndianArts.CustomControls"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:contentView="clr-namespace:BigIndianArts.Templates">
+    <StackLayout Spacing="0"
+                 Margin="0"
+                 BackgroundColor="{StaticResource BodyBgColor}">
+        <!--Title bar-->
+        <Grid Margin="0"
+              Padding="0"
+              RowDefinitions="60">
+            <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+            <StackLayout Orientation="Horizontal"
+                         Spacing="0"
+                         Padding="0"
+                         Margin="15,15,15,0">
+                <ImageButton Source="back.png"
+                             Margin="0,0,0,0"
+                             Clicked="ImageBackButton_Clicked"
+                             HeightRequest="25"
+                             WidthRequest="25"
+                             BackgroundColor="Transparent" />
+                <Label Text="View Orders"
+                       Style="{StaticResource TitleBarLabel}"
+                       FontSize="19"
+                       Margin="10,0,0,0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center" />
+                <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"z
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+            </StackLayout>
+        </Grid>
+        <!--Title bar-->
+        <Grid Padding="0"
+                      Margin="0"
+                      VerticalOptions="FillAndExpand">
+            <tabView:SfTabView BackgroundColor="White"
+                                       EnableSwiping="True"
+                                       TabHeight="53"
+                                       DisplayMode="Text"
+                                       FlowDirection="LeftToRight"
+                                       SelectionChanged="SfTabView_SelectionChanged"
+                                       VisibleHeaderCount="3"
+                                       Margin="-10,0,-10,0">
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings Color="{StaticResource PendingColor}"
+                                                                Position="Bottom"
+                                                                x:Name="selection_indctr"
+                                                                StrokeThickness="3" />
+                </tabView:SfTabView.SelectionIndicatorSettings>
+                <!--New tab-->
+                <tabView:SfTabItem>
+                    <tabView:SfTabItem.HeaderContent>
+                        <StackLayout HorizontalOptions="EndAndExpand"
+                                             VerticalOptions="EndAndExpand"
+                                             Padding="0"
+                                             Margin="0,0,0,0">
+                            <StackLayout Orientation="Horizontal"
+                                                 Margin="0,0,0,0"
+                                                 HorizontalOptions="CenterAndExpand"
+                                                 VerticalOptions="CenterAndExpand">
+
+                                <Label Text="WAITING"
+                                               x:Name="Lbl_pending"
+                                               VerticalOptions="CenterAndExpand"
+                                               HorizontalOptions="EndAndExpand"
+                                               FontSize="12"
+                                               FontAttributes="None"
+                                               TextColor="{StaticResource PendingColor}"
+                                              />
+
+                            </StackLayout>
+                        </StackLayout>
+                    </tabView:SfTabItem.HeaderContent>
+                    <!--<Pending>-->
+                    <tabView:SfTabItem.Content>
+                        <Grid VerticalOptions="FillAndExpand">
+                            <CollectionView VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            x:Name="cv_Pendings"
+                            SelectionMode="None"
+                            BackgroundColor="{StaticResource BodyBgColor}"
+                            VerticalScrollBarVisibility="Never"
+                           >
+                                <CollectionView.EmptyView>
+                                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 x:Name="Stk_Pending_noData">
+                                        <contentView:NoDataContentView VerticalOptions="CenterAndExpand"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       IsVisible="True" />
+                                    </StackLayout>
+                                </CollectionView.EmptyView>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <syncEffectsView:SfEffectsView TouchDownEffects="Ripple"
+                                                                       Padding="15,0">
+                                            <Grid Padding="0,4"
+                                                  Margin="0"
+                                                  BackgroundColor="{StaticResource BodyBgColor}">
+                                                <Frame Margin="0,4,0,4"
+                                                       Padding="0"
+                                                       CornerRadius="8"
+                                                       BorderColor="Transparent"
+                                                       BackgroundColor="{StaticResource ThemeDarkGreenColor}"
+                                                       HasShadow="False">
+                                                    <StackLayout Spacing="0"
+                                                                 Padding="0,0,0,10"
+                                                                 Margin="5,0,0,0"
+                                                                 BackgroundColor="White">
+                                                        <Grid RowDefinitions="Auto,auto,auto,auto,auto,auto,auto"
+                                                              Padding="0,0,0,10"
+                                                              Margin="15,10,0,0"
+                                                              ColumnDefinitions="*,*">
+                                                            <StackLayout  Grid.Row="0"
+                                                                          Grid.Column="0"
+                                                                          Grid.ColumnSpan="2"
+                                                                          Spacing="0"
+                                                                          HorizontalOptions="FillAndExpand">
+                                                                <!--<Label Text="Image"
+                                                       Margin="0,5,0,0"
+                                                       Style="{StaticResource ListPageNameLabel}"></Label>-->
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Image HorizontalOptions="CenterAndExpand"
+                                                                       VerticalOptions="FillAndExpand"
+                                                                       Margin="0"
+                                                                       Aspect="AspectFit"
+                                                                       HeightRequest="200"
+                                                                       WidthRequest="200">
+                                                                    <Image.Source>
+                                                                        <UriImageSource Uri="{Binding uploaded_image}"
+                                                                                        CacheValidity="5"
+                                                                                        CachingEnabled="true" />
+                                                                    </Image.Source>
+                                                                </Image>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <Label FontSize="14"
+                                                                   Grid.Row="1"
+                                                                   Grid.Column="0"
+                                                                   Grid.ColumnSpan="2"
+                                                                   Margin="0,0,0,5"
+                                                                   HorizontalOptions="FillAndExpand"
+                                                                   Style="{StaticResource TitleText}">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <!--<Span Text="Employee: "></Span>-->
+                                                                        <Span Text="{Binding type}"
+                                                                              FontAttributes="Bold"></Span>
+                                                                        <Span Text=" "
+                                                                              FontAttributes="Bold"></Span>
+                                                                        <Span Text="{Binding size}"
+                                                                              FontAttributes="Bold"></Span>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <!--<StackLayout Grid.Row="2"
+                                                         Grid.Column="1"
+                                                         Spacing="0">
+                                                <Label Text="Customer Number"
+                                                      Margin="0,5,0,0"
+                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                -->
+                                                            <!--FontAttributes="Bold"
+                                                                                   Style="{StaticResource BodyText}"
+                                                                                   FontSize="10" />-->
+                                                            <!--
+                                                <Label Text="{Binding contact_number}"
+                                                       Margin="0"
+                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                -->
+                                                            <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            <!--
+                                            </StackLayout>-->
+                                                            <StackLayout Grid.Row="2"
+                                                                         Spacing="0"
+                                                                         Grid.Column="0">
+                                                                <Label Text="Total Amount"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontAttributes="Bold"
+                                                                                   Style="{StaticResource BodyText}"
+                                                                                   FontSize="10" />-->
+                                                                <Label Text="{Binding price}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="4"
+                                                                         Spacing="0"
+                                                                         Grid.Column="0">
+                                                                <Label Text="Delivery Date"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontAttributes="Bold"
+                                                                                   Style="{StaticResource BodyText}"
+                                                                                   FontSize="10" />-->
+                                                                <Label Text="{Binding expected_date}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="2"
+                                                                         Spacing="0"
+                                                                         Grid.Column="1">
+                                                                <Label Text="Artist"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Label Text="{Binding assign_name}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}" />-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="3"
+                                                                         Spacing="0"
+                                                                         Grid.Column="0">
+                                                                <Label Text="Balance Amount"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Label Text="{Binding balance}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="3"
+                                                                         Spacing="0"
+                                                                         Grid.Column="1">
+                                                                <Label Text="Status"
+                                                                       Margin="0,5,0,3"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Label Text="{Binding status}"
+                                                                       Margin="0,-2,0,3"
+                                                                       TextColor="Green"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--TextColor="{Binding Item.StatusColor}"
+                                                                                   FontSize="13"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                            </StackLayout>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </Grid>
+                                            <syncEffectsView:SfEffectsView.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Cv_selectionChanged"
+                                                                      CommandParameter="{Binding .}" />
+                                            </syncEffectsView:SfEffectsView.GestureRecognizers>
+                                        </syncEffectsView:SfEffectsView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+
+                                <CollectionView.Header>
+                                    <StackLayout HeightRequest="11"></StackLayout>
+                                </CollectionView.Header>
+                            </CollectionView>
+
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+
+                </tabView:SfTabItem>
+                <!--New tab-->
+                <!--Assigned tab-->
+                <tabView:SfTabItem>
+                    <tabView:SfTabItem.HeaderContent>
+                        <StackLayout HorizontalOptions="EndAndExpand"
+                                             VerticalOptions="EndAndExpand"
+                                             Padding="0"
+                                             Margin="0,0,0,0">
+                            <StackLayout Orientation="Horizontal"
+                                                 Margin="0,0,0,0"
+                                                 HorizontalOptions="CenterAndExpand"
+                                                 VerticalOptions="CenterAndExpand">
+
+                                <Label  Text="APPROVED"
+                                                x:Name="Lbl_approved"
+                                                VerticalOptions="CenterAndExpand"
+                                                FontSize="12"
+                                                FontAttributes="None"
+                                                TextColor="{StaticResource TitleTextColor}"
+                                                />
+
+                            </StackLayout>
+                        </StackLayout>
+                    </tabView:SfTabItem.HeaderContent>
+
+
+                    <tabView:SfTabItem.Content>
+                        <Grid VerticalOptions="FillAndExpand">
+                            <CollectionView VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            x:Name="cv_Approved"
+                            SelectionMode="None"
+                            BackgroundColor="{StaticResource BodyBgColor}"
+                            VerticalScrollBarVisibility="Never"
+                           >
+                                <CollectionView.EmptyView>
+                                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 x:Name="Stk_Approved_noData">
+                                        <contentView:NoDataContentView VerticalOptions="CenterAndExpand"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       IsVisible="True" />
+                                    </StackLayout>
+                                </CollectionView.EmptyView>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <syncEffectsView:SfEffectsView TouchDownEffects="Ripple"
+                                                                       Padding="15,0">
+                                            <Grid Padding="0,4"
+                                                  Margin="0"
+                                                  BackgroundColor="{StaticResource BodyBgColor}">
+                                                <Frame Margin="0,4,0,4"
+                                                       Padding="0"
+                                                       CornerRadius="8"
+                                                       BorderColor="Transparent"
+                                                       BackgroundColor="{StaticResource ThemeDarkGreenColor}"
+                                                       HasShadow="False">
+                                                    <StackLayout Spacing="0"
+                                                                 Padding="0,0,0,10"
+                                                                 Margin="5,0,0,0"
+                                                                 BackgroundColor="White">
+                                                        <Grid RowDefinitions="Auto,auto,auto,auto,auto,auto,auto"
+                                                              Padding="0,0,0,10"
+                                                              Margin="15,10,0,0"
+                                                              ColumnDefinitions="*,*">
+                                                            <StackLayout  Grid.Row="0"
+                                                                          Grid.Column="0"
+                                                                          Grid.ColumnSpan="2"
+                                                                          Spacing="0"
+                                                                          HorizontalOptions="FillAndExpand">
+                                                                <!--<Label Text="Image"
+                                                       Margin="0,5,0,0"
+                                                       Style="{StaticResource ListPageNameLabel}"></Label>-->
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Image HorizontalOptions="CenterAndExpand"
+                                                                       VerticalOptions="FillAndExpand"
+                                                                       Margin="0"
+                                                                       Aspect="AspectFit"
+                                                                       HeightRequest="200"
+                                                                       WidthRequest="200">
+                                                                    <Image.Source>
+                                                                        <UriImageSource Uri="{Binding uploaded_image}"
+                                                                                        CacheValidity="5"
+                                                                                        CachingEnabled="true" />
+                                                                    </Image.Source>
+                                                                </Image>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <Label FontSize="14"
+                                                                   Grid.Row="1"
+                                                                   Grid.Column="0"
+                                                                   Grid.ColumnSpan="2"
+                                                                   Margin="0,0,0,5"
+                                                                   HorizontalOptions="FillAndExpand"
+                                                                   Style="{StaticResource TitleText}">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <!--<Span Text="Employee: "></Span>-->
+                                                                        <Span Text="{Binding type}"
+                                                                              FontAttributes="Bold"></Span>
+                                                                        <Span Text=" "
+                                                                              FontAttributes="Bold"></Span>
+                                                                        <Span Text="{Binding size}"
+                                                                              FontAttributes="Bold"></Span>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <!--<StackLayout Grid.Row="2"
+                                                         Grid.Column="1"
+                                                         Spacing="0">
+                                                <Label Text="Customer Number"
+                                                      Margin="0,5,0,0"
+                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                -->
+                                                            <!--FontAttributes="Bold"
+                                                                                   Style="{StaticResource BodyText}"
+                                                                                   FontSize="10" />-->
+                                                            <!--
+                                                <Label Text="{Binding contact_number}"
+                                                       Margin="0"
+                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                -->
+                                                            <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            <!--
+                                            </StackLayout>-->
+                                                            <StackLayout Grid.Row="2"
+                                                                         Spacing="0"
+                                                                         Grid.Column="0">
+                                                                <Label Text="Total Amount"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontAttributes="Bold"
+                                                                                   Style="{StaticResource BodyText}"
+                                                                                   FontSize="10" />-->
+                                                                <Label Text="{Binding price}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="4"
+                                                                         Spacing="0"
+                                                                         Grid.Column="0">
+                                                                <Label Text="Delivery Date"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontAttributes="Bold"
+                                                                                   Style="{StaticResource BodyText}"
+                                                                                   FontSize="10" />-->
+                                                                <Label Text="{Binding expected_date}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="2"
+                                                                         Spacing="0"
+                                                                         Grid.Column="1">
+                                                                <Label Text="Artist"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Label Text="{Binding assign_name}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}" />-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="3"
+                                                                         Spacing="0"
+                                                                         Grid.Column="0">
+                                                                <Label Text="Balance Amount"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Label Text="{Binding balance}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="3"
+                                                                         Spacing="0"
+                                                                         Grid.Column="1">
+                                                                <Label Text="Status"
+                                                                       Margin="0,5,0,3"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Label Text="{Binding status}"
+                                                                       Margin="0,-2,0,3"
+                                                                       TextColor="Green"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--TextColor="{Binding Item.StatusColor}"
+                                                                                   FontSize="13"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                            </StackLayout>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </Grid>
+                                            <syncEffectsView:SfEffectsView.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Cv_selectionChanged"
+                                                                      CommandParameter="{Binding .}" />
+                                            </syncEffectsView:SfEffectsView.GestureRecognizers>
+                                        </syncEffectsView:SfEffectsView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+
+                                <CollectionView.Header>
+                                    <StackLayout HeightRequest="11"></StackLayout>
+                                </CollectionView.Header>
+                            </CollectionView>
+
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <!--Rejected tab-->
+                <tabView:SfTabItem>
+                    <tabView:SfTabItem.HeaderContent>
+                        <StackLayout HorizontalOptions="EndAndExpand"
+                                             VerticalOptions="EndAndExpand"
+                                             Padding="0"
+                                             Margin="0,0,0,0">
+                            <StackLayout Orientation="Horizontal"
+                                                 Margin="0,0,0,0"
+                                                 HorizontalOptions="CenterAndExpand"
+                                                 VerticalOptions="CenterAndExpand">
+
+                                <Label  Text="REJECTED"
+                                                x:Name="Lbl_rejected"
+                                                VerticalOptions="CenterAndExpand"
+                                                FontSize="12"
+                                                FontAttributes="None"
+                                                TextColor="{StaticResource TitleTextColor}"
+                                                 />
+
+                            </StackLayout>
+                        </StackLayout>
+                    </tabView:SfTabItem.HeaderContent>
+
+
+                    <tabView:SfTabItem.Content>
+                        <Grid VerticalOptions="FillAndExpand">
+                            <CollectionView VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            x:Name="cv_Rejected"
+                            SelectionMode="None"
+                            BackgroundColor="{StaticResource BodyBgColor}"
+                            VerticalScrollBarVisibility="Never"
+                           >
+                                <CollectionView.EmptyView>
+                                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 x:Name="Stk_Rejected_noData">
+                                        <contentView:NoDataContentView VerticalOptions="CenterAndExpand"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       IsVisible="True" />
+                                    </StackLayout>
+                                </CollectionView.EmptyView>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <syncEffectsView:SfEffectsView TouchDownEffects="Ripple"
+                                                                       Padding="15,0">
+                                            <Grid Padding="0,4"
+                                                  Margin="0"
+                                                  BackgroundColor="{StaticResource BodyBgColor}">
+                                                <Frame Margin="0,4,0,4"
+                                                       Padding="0"
+                                                       CornerRadius="8"
+                                                       BorderColor="Transparent"
+                                                       BackgroundColor="{StaticResource ThemeDarkGreenColor}"
+                                                       HasShadow="False">
+                                                    <StackLayout Spacing="0"
+                                                                 Padding="0,0,0,10"
+                                                                 Margin="5,0,0,0"
+                                                                 BackgroundColor="White">
+                                                        <Grid RowDefinitions="Auto,auto,auto,auto,auto,auto,auto"
+                                                              Padding="0,0,0,10"
+                                                              Margin="15,10,0,0"
+                                                              ColumnDefinitions="*,*">
+                                                            <StackLayout  Grid.Row="0"
+                                                                          Grid.Column="0"
+                                                                          Grid.ColumnSpan="2"
+                                                                          Spacing="0"
+                                                                          HorizontalOptions="FillAndExpand">
+                                                                <!--<Label Text="Image"
+                                                       Margin="0,5,0,0"
+                                                       Style="{StaticResource ListPageNameLabel}"></Label>-->
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Image HorizontalOptions="CenterAndExpand"
+                                                                       VerticalOptions="FillAndExpand"
+                                                                       Margin="0"
+                                                                       Aspect="AspectFit"
+                                                                       HeightRequest="200"
+                                                                       WidthRequest="200">
+                                                                    <Image.Source>
+                                                                        <UriImageSource Uri="{Binding uploaded_image}"
+                                                                                        CacheValidity="5"
+                                                                                        CachingEnabled="true" />
+                                                                    </Image.Source>
+                                                                </Image>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <Label FontSize="14"
+                                                                   Grid.Row="1"
+                                                                   Grid.Column="0"
+                                                                   Grid.ColumnSpan="2"
+                                                                   Margin="0,0,0,5"
+                                                                   HorizontalOptions="FillAndExpand"
+                                                                   Style="{StaticResource TitleText}">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <!--<Span Text="Employee: "></Span>-->
+                                                                        <Span Text="{Binding type}"
+                                                                              FontAttributes="Bold"></Span>
+                                                                        <Span Text=" "
+                                                                              FontAttributes="Bold"></Span>
+                                                                        <Span Text="{Binding size}"
+                                                                              FontAttributes="Bold"></Span>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <!--<StackLayout Grid.Row="2"
+                                                         Grid.Column="1"
+                                                         Spacing="0">
+                                                <Label Text="Customer Number"
+                                                      Margin="0,5,0,0"
+                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                -->
+                                                            <!--FontAttributes="Bold"
+                                                                                   Style="{StaticResource BodyText}"
+                                                                                   FontSize="10" />-->
+                                                            <!--
+                                                <Label Text="{Binding contact_number}"
+                                                       Margin="0"
+                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                -->
+                                                            <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            <!--
+                                            </StackLayout>-->
+                                                            <StackLayout Grid.Row="2"
+                                                                         Spacing="0"
+                                                                         Grid.Column="0">
+                                                                <Label Text="Total Amount"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontAttributes="Bold"
+                                                                                   Style="{StaticResource BodyText}"
+                                                                                   FontSize="10" />-->
+                                                                <Label Text="{Binding price}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="4"
+                                                                         Spacing="0"
+                                                                         Grid.Column="0">
+                                                                <Label Text="Delivery Date"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontAttributes="Bold"
+                                                                                   Style="{StaticResource BodyText}"
+                                                                                   FontSize="10" />-->
+                                                                <Label Text="{Binding expected_date}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="2"
+                                                                         Spacing="0"
+                                                                         Grid.Column="1">
+                                                                <Label Text="Artist"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Label Text="{Binding assign_name}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}" />-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="3"
+                                                                         Spacing="0"
+                                                                         Grid.Column="0">
+                                                                <Label Text="Balance Amount"
+                                                                       Margin="0,5,0,0"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Label Text="{Binding balance}"
+                                                                       Margin="0"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--FontSize="13"
+                                                                                   TextColor="{StaticResource TitleTextColor}"></Label>-->
+                                                            </StackLayout>
+                                                            <StackLayout Grid.Row="3"
+                                                                         Spacing="0"
+                                                                         Grid.Column="1">
+                                                                <Label Text="Status"
+                                                                       Margin="0,5,0,3"
+                                                                       Style="{StaticResource ListPageNameLabel}"></Label>
+                                                                <!--FontSize="10"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                                <Label Text="{Binding status}"
+                                                                       Margin="0,-2,0,3"
+                                                                       TextColor="Green"
+                                                                       Style="{StaticResource ListPageValueLabel}"></Label>
+                                                                <!--TextColor="{Binding Item.StatusColor}"
+                                                                                   FontSize="13"
+                                                                                   Style="{StaticResource BodyText}" />-->
+                                                            </StackLayout>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </Grid>
+                                            <syncEffectsView:SfEffectsView.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Cv_selectionChanged"
+                                                                      CommandParameter="{Binding .}" />
+                                            </syncEffectsView:SfEffectsView.GestureRecognizers>
+                                        </syncEffectsView:SfEffectsView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+
+                                <CollectionView.Header>
+                                    <StackLayout HeightRequest="11"></StackLayout>
+                                </CollectionView.Header>
+                            </CollectionView>
+
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+            </tabView:SfTabView>
+            
+        </Grid>
+
+    </StackLayout>
+</ContentPage>
+    
+    
+    
+    
+    

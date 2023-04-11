@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BigIndianArts.App"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+    
+    <Application.Resources>
+        <Color x:Key="TitleTextColor">#35383d</Color>
+        <Color x:Key="ProductTitleTextColor">black</Color>
+       
+        <Color x:Key="BodyBgColor">#f8f8f8</Color>
+        <Color x:Key="PlaceHolderColor">#adaeaf</Color>
+        <Color x:Key="VeryLightGrayColor">#f8f8f8</Color>
+        <Color x:Key="ThemeColor">white</Color>
+        <Color x:Key="LightGreenColor">#477763</Color>
+        <Color x:Key="ThemebgColor">#dadcdf</Color>
+       
+        <Color x:Key="SubtitleTextColor">#ff0000</Color>
+        <Color x:Key="BodyTextColor">#6a6d76</Color>
+        <Color x:Key="SubBodyTextColor">#989aa0</Color>
+        <Color x:Key="YET_TO_STARTColor">#c834db</Color>
+      
+        <Color x:Key="ContentPageBgColor">#238823</Color>
+      
+        <Color x:Key="StatusBarColor">#238823</Color>
+     
+        <Color x:Key="ThemeYellowColor">#ffe500</Color>
+        <Color x:Key="ThemeLightYellowColor">#ffe600</Color>
+        <Color x:Key="ChatSenderMsgBGColor">#fff69e</Color>
+        <Color x:Key="ThemeRedColor">#ed1c23</Color>
+        <Color x:Key="ThemeDarkGreenColor">#477763</Color>
+        <Color x:Key="ThemeLightGreenColor">#28a528</Color>
+        <Color x:Key="SeparatorColor">#f0f0f0</Color>
+        <!--Bottom Lines in Cards/Separator in LV-->
+        <!--<Color x:Key="SeparatorColor">#f4f4f5</Color>-->
+       
+        <Color x:Key="PlaceHolderDefaultColor">#adaeaf</Color>
+        <!--<Color x:Key="PlaceHolderDefaultColor">#9f9f9f</Color>-->
+        <Color x:Key="ThemeLightLightGreenColor">#edf6ed</Color>
+        <Color x:Key="BackButtonBgColor">#238823</Color>
+        <Color x:Key="SearchFilterBgColor">#359235</Color>
+        <Color x:Key="PendingColor">#3299CC</Color>
+        <Color x:Key="AvalilableColour">#3299CC</Color>
+        <Color x:Key="SolvedColor">#3299CC</Color>
+        <Color x:Key="Re_OpenedColor">#12999C</Color>
+        <Color x:Key="NewColor">#b405fC</Color>
+        <Color x:Key="ReleasedColor">#AD1F9A</Color>
+        <Color x:Key="AllColor">Gray</Color>
+        <Color x:Key="SettledColor">#e09cb3</Color>
+        <Color x:Key="AssignedColor">#7a6fbe</Color>
+        <Color x:Key="AllocatedColor">#7a6fbe</Color>
+        <Color x:Key="ResolvedColor">#22baa0</Color>
+        <Color x:Key="ApprovedColor">#238823</Color>
+        <Color x:Key="RejectedColor">#ed1c23</Color>
+        <Color x:Key="CancelledColor">#ed1c23</Color>
+        <Color x:Key="ClosedColor">#238823</Color>
+        <Color x:Key="DeletedColor">#ed1c23</Color>
+        <Color x:Key="VerifyColor">#238823</Color>
+        <Color x:Key="CloseColor">#238823</Color>
+        <Color x:Key="CompletedColor">#238823</Color>
+        <Color x:Key="ArrivedColor">#238823</Color>
+        <Color x:Key="HoldColor">orange</Color>
+        <Color x:Key="ExitedColor">Gray</Color>
+        <Color x:Key="YettostartColor">#3299CC</Color>
+        <Color x:Key="ComboxSelectedItemColor">#f0f0f0</Color>
+        <Color x:Key="ComboxCloseItemColor">#238823</Color>
+        <Color x:Key="InProgressingColor">#238823</Color>
+        <Color x:Key="ReadyForDispatchColor">#ffc870</Color>
+        <Color x:Key="DispatchColor">#b03060</Color>
+        <Color x:Key="DeliveredColor">Gray</Color>
+        <Color x:Key="ConfirmedColor">#238823</Color>
+        <Color x:Key="BookedColor">#ffc870</Color>
+        <Color x:Key="AwardedColor">#28b463</Color>
+        <Color x:Key="NotAwardedColor">#ff8000</Color>
+        <Color x:Key="PartiallyAwardedColor">#7a6fbe</Color>
+        <x:String x:Key="NotificationHistoryText">Notification History</x:String>
+        <Style x:Key="RegisterBtnStyle"
+               TargetType="Button">
+
+            <Setter Property="FontSize"
+                    Value="13" />
+            <Setter Property="BackgroundColor"
+                    Value="Transparent" />
+            <Setter Property="CornerRadius"
+                    Value="{OnPlatform Android=20,iOS=17}" />
+            <Setter Property="TextColor"
+                    Value="Black" />
+            <Setter Property="FontFamily"
+                    Value="ThemeFontRegular" />
+            <Setter Property="TextTransform"
+                    Value="None" />
+        </Style>
+
+
+        <!--Main Page Name Label-->
+        <Style x:Key="MainPageNameLabel"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource LightGreenColor}" />
+            <Setter Property="FontFamily"
+                    Value="UlmGroteskExtrabold" />
+            <Setter Property="FontSize"
+                    Value="40" />
+        </Style>
+
+        <!--Titlebar Label-->
+        <Style x:Key="TitleBarLabel"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource LightGreenColor}" />
+            <Setter Property="FontFamily"
+                    Value="UlmGroteskBold" />
+            <Setter Property="FontSize"
+                    Value="19" />
+        </Style>
+        
+        
+        <Style x:Key="BodyText"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource BodyTextColor}" />
+            <Setter Property="FontFamily"
+                    Value="UlmGroteskRegular" />
+            <Setter Property="FontSize"
+                    Value="12" />
+        </Style>
+
+        <Style x:Key="TitleText"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource TitleTextColor}" />
+            <Setter Property="FontFamily"
+                    Value="UlmGroteskBold" />
+            <Setter Property="FontSize"
+                    Value="19" />
+        </Style>
+        
+        
+        <Style x:Key="LabelStyle"
+               TargetType="Label">
+            <Setter Property="VerticalOptions"
+                    Value="Center" />
+            <Setter Property="HorizontalTextAlignment"
+                    Value="Center" />
+            <Setter Property="LineHeight"
+                    Value="{OnPlatform Android=1.25,Default=-1}" />
+            <Setter Property="TextColor"
+                    Value="{DynamicResource TitleTextColor}" />
+        </Style>
+        <Style x:Key="ListPageNameLabel"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource BodyTextColor}" />
+            <Setter Property="FontFamily"
+                    Value="UlmGroteskRegular" />
+            <Setter Property="FontSize"
+                    Value="14" />
+        </Style>
+        <Style x:Key="ListPageValueLabel"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource TitleTextColor}" />
+            <Setter Property="FontFamily"
+                    Value="UlmGroteskRegular" />
+            <Setter Property="FontSize"
+                    Value="15" />
+        </Style>
+        <Style x:Key="LabelNameStyle"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource BodyTextColor}" />
+            <Setter Property="FontFamily"
+                    Value="UlmGroteskRegular" />
+            <Setter Property="FontSize"
+                    Value="15" />
+        </Style>
+        <Style x:Key="LabelValueStyle"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource TitleTextColor}" />
+            <Setter Property="FontSize"
+                    Value="15" />
+            <Setter Property="FontFamily"
+                    Value="UlmGroteskRegular" />
+        </Style>
+        <Style x:Key="BtnBodyText"
+               TargetType="Button">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource BodyTextColor}" />
+            <Setter Property="FontFamily"
+                    Value="UlmGroteskRegular" />
+            <Setter Property="FontSize"
+                    Value="12" />
+        </Style>
+        <Style x:Key="SfButtonStyle"
+               TargetType="buttons:SfButton">
+            <Setter Property="HorizontalOptions"
+                    Value="CenterAndExpand" />
+            <Setter Property="VerticalOptions"
+                    Value="EndAndExpand" />
+            <Setter Property="Margin"
+                    Value="0,10,0,24" />
+            <Setter Property="CornerRadius"
+                    Value="20" />
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+            <Setter Property="WidthRequest"
+                    Value="245" />
+            <Setter Property="HeightRequest"
+                    Value="40" />
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource BodyBgColor}" />
+            <Setter Property="TextColor"
+                    Value="{DynamicResource TitleTextColor}" />
+        </Style>
+    </Application.Resources>
+</Application>

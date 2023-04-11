@@ -1,0 +1,850 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utility1="clr-namespace:BigIndianArts.CustomControls"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             x:Class="BigIndianArts.Views.EditOrderRequestPage"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     Padding="0"
+                     BackgroundColor="{StaticResource BodyBgColor}">
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <Label Text="Edit Order"
+                           Style="{StaticResource TitleBarLabel}"
+                           FontSize="19"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+                </StackLayout>
+            </Grid>
+            <!--/Title bar-->
+            <ScrollView VerticalScrollBarVisibility="Never"
+                        Margin="0,0,0,0"
+                        Padding="0">
+                <StackLayout Spacing="0"
+                             Padding="0"
+                             Margin="15,0,15,20">
+                    <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           HasShadow="False"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="0,10,0,10">
+                        <StackLayout Spacing="0"
+                                     Padding="0"
+                                     Margin="0">
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="0"
+                                         Margin="-5,5"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="FillAndExpand">
+                                <CheckBox HorizontalOptions="Start"
+                                          x:Name="chk_online"
+                                          CheckedChanged="chk_online_CheckedChanged"
+                                          VerticalOptions="FillAndExpand"
+                                          IsChecked="False"></CheckBox>
+                                <Label HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       Text="Online Order"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-5"
+                                       Style="{StaticResource LabelNameStyle}"></Label>
+                            </StackLayout>
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Bill Number" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <utility1:BorderlessEntry Placeholder="Bill Number"
+                                                      IsHideLine="True"
+                                                      FontFamily="UlmGroteskBold"
+                                                      FontSize="15"
+                                                      MaxLength="4"
+                                                      x:Name="ent_Billnumber"
+                                                      Unfocused="ent_Billnumber_Unfocused"
+                                                      Keyboard="Numeric"
+                                                      Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-2,10,0,10'}"
+                                                      HorizontalTextAlignment="Start"
+                                                      TextColor="{StaticResource TitleTextColor}"
+                                                      PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                      HorizontalOptions="FillAndExpand"
+                                                      VerticalOptions="StartAndExpand" />
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Customer Name" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <utility1:BorderlessEntry Placeholder="Customer Name"
+                                                      IsHideLine="True"
+                                                      FontFamily="UlmGroteskBold"
+                                                      FontSize="15"
+                                                      x:Name="ent_customerName"
+                                                      Text="{Binding VLocation}"
+                                                      Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-2,10,0,10'}"
+                                                      HorizontalTextAlignment="Start"
+                                                      TextColor="{StaticResource TitleTextColor}"
+                                                      PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                      HorizontalOptions="FillAndExpand"
+                                                      VerticalOptions="StartAndExpand" />
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   IsVisible="true"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Contact Number" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <utility1:BorderlessEntry Placeholder="Contact Number"
+                                                      IsVisible="true"
+                                                      MaxLength="10"
+                                                      IsHideLine="True"
+                                                      Keyboard="Telephone"
+                                                      FontFamily="UlmGroteskBold"
+                                                      FontSize="15"
+                                                      x:Name="ent_contactNumber"
+                                                      Unfocused="ent_contactNumber_Unfocused"
+                                                      Text="{Binding VLocation}"
+                                                      Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-2,10,0,10'}"
+                                                      HorizontalTextAlignment="Start"
+                                                      TextColor="{StaticResource TitleTextColor}"
+                                                      PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                      HorizontalOptions="FillAndExpand"
+                                                      VerticalOptions="StartAndExpand" />
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     IsVisible="true"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Art Type" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <combobox:SfComboBox Watermark="Art Type"
+                                                 TextSize="15"
+                                                 ShowBorder="False"
+                                                 FontFamily="UlmGroteskBold"
+                                                 Margin="-4,0,0,0"
+                                                 x:Name="combo_art"
+                                                 SelectionChanged="Combo_art_SelectionChanged"
+                                                 WatermarkColor="{StaticResource PlaceHolderColor}"
+                                                 TextColor="{StaticResource TitleTextColor}"
+                                                 IsEditableMode="False"
+                                                 HeightRequest="40">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings   Height="15"
+                                                                       Width="15">
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Image Source="down_arrow.png"
+                                                   Margin="0"
+                                                   HeightRequest="15"
+                                                   VerticalOptions="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Bigindianarts Charcol</x:String>
+                                        <x:String>Bigindianarts Ink</x:String>
+                                        <x:String>Bigindianarts Pencil</x:String>
+                                        <x:String>Bigindianarts Ink Caricature</x:String>
+                                        <x:String>Bigindianarts Pastel Colour</x:String>
+                                        <x:String>Bigindianarts Acrylic</x:String>
+                                        <x:String>Bigindianarts Pencil Colour</x:String>
+                                        <x:String>Bigindianarts Caricature</x:String>
+                                        <x:String>Bigindianarts Digital</x:String>
+                                        <x:String>Bigindianarts Painting</x:String>
+                                        <x:String>Bigindianarts Lights</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                            </combobox:SfComboBox>
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Orientation" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <combobox:SfComboBox Watermark="Orientation"
+                                                 TextSize="15"
+                                                 ShowBorder="False" 
+                                                 FontFamily="UlmGroteskBold"
+                                                 Margin="-4,0,0,0" x:Name="combo_orientation"
+                                                 WatermarkColor="{StaticResource PlaceHolderColor}"
+                                                 TextColor="{StaticResource TitleTextColor}"
+                                                 IsEditableMode="False"
+                                                 HeightRequest="40">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings   Height="15"
+                                                                       Width="15">
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Image Source="down_arrow.png"
+                                                   Margin="0"
+                                                   HeightRequest="15"
+                                                   VerticalOptions="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Landscape</x:String>
+                                        <x:String>Portrait</x:String>
+
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                            </combobox:SfComboBox>
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Number of Faces" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <combobox:SfComboBox Watermark="Number of Faces"
+                                                 TextSize="15"
+                                                 FontFamily="UlmGroteskBold"
+                                                 ShowBorder="False"
+                                                 x:Name="combo_count"
+                                                 SelectionChanged="Combo_count_SelectionChanged"
+                                                 Margin="-4,0,0,0"
+                                                 WatermarkColor="{StaticResource PlaceHolderColor}"
+                                                 TextColor="{StaticResource TitleTextColor}"
+                                                 IsEditableMode="False"
+                                                 HeightRequest="40">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings   Height="15"
+                                                                       Width="15">
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Image Source="down_arrow.png"
+                                                   Margin="0"
+                                                   HeightRequest="15"
+                                                   VerticalOptions="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>1</x:String>
+                                        <x:String>2</x:String>
+                                        <x:String>3</x:String>
+                                        <x:String>4</x:String>
+                                        <x:String>5</x:String>
+                                        <x:String>6</x:String>
+                                        <x:String>7</x:String>
+                                        <x:String>8</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                            </combobox:SfComboBox>
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Size " />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <combobox:SfComboBox Watermark="Size"
+                                                 TextSize="15"
+                                                 ShowBorder="False"
+                                                 FontFamily="UlmGroteskBold"
+                                                 x:Name="combo_size"
+                                                 SelectionChanged="Combo_size_SelectionChanged"
+                                                 Margin="-4,0,0,0"
+                                                 WatermarkColor="{StaticResource PlaceHolderColor}"
+                                                 TextColor="{StaticResource TitleTextColor}"
+                                                 IsEditableMode="False"
+                                                 HeightRequest="40">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings   Height="15"
+                                                                       Width="15">
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Image Source="down_arrow.png"
+                                                   Margin="0"
+                                                   HeightRequest="15"
+                                                   VerticalOptions="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>A4</x:String>
+                                        <x:String>A3</x:String>
+                                        <x:String>A2</x:String>
+                                        <x:String>A1</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                            </combobox:SfComboBox>
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Frame" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <combobox:SfComboBox Watermark="Frame"
+                                                 TextSize="15"
+                                                 ShowBorder="False"
+                                                 SelectionChanged="Combo_frame_SelectionChanged"
+                                                 FontFamily="UlmGroteskBold"
+                                                 Margin="-4,0,0,0"
+                                                 x:Name="combo_frame"
+                                                 WatermarkColor="{StaticResource PlaceHolderColor}"
+                                                 TextColor="{StaticResource TitleTextColor}"
+                                                 IsEditableMode="False"
+                                                 HeightRequest="40">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings   Height="15"
+                                                                       Width="15">
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Image Source="down_arrow.png"
+                                                   Margin="0"
+                                                   HeightRequest="15"
+                                                   VerticalOptions="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Yes</x:String>
+                                        <x:String>No</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                            </combobox:SfComboBox>
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Delivery Mode" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <combobox:SfComboBox Watermark="Delivery Mode"
+                                                 TextSize="15"
+                                                 ShowBorder="False"
+                                                 FontFamily="UlmGroteskBold"
+                                                 x:Name="combo_delivery_mode"
+                                                 SelectionChanged="combo_delivery_mode_SelectionChanged"
+                                                 Margin="-4,0,0,0"
+                                                 WatermarkColor="{StaticResource PlaceHolderColor}"
+                                                 TextColor="{StaticResource TitleTextColor}"
+                                                 IsEditableMode="False"
+                                                 HeightRequest="40">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings   Height="15"
+                                                                       Width="15">
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Image Source="down_arrow.png"
+                                                   Margin="0"
+                                                   HeightRequest="15"
+                                                   VerticalOptions="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:SfComboBox.ComboBoxSource>
+                                    <ListCollection:List x:TypeArguments="x:String">
+                                        <x:String>Courier</x:String>
+                                        <x:String>Collect from Shop</x:String>
+                                        <x:String>Direct Delivery</x:String>
+                                    </ListCollection:List>
+                                </combobox:SfComboBox.ComboBoxSource>
+                            </combobox:SfComboBox>
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Delivery Date" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <DatePicker FontSize="15"
+                                        Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-4,10,0,10'}"
+                                        FontFamily="UlmGroteskBold"
+                                        TextColor="{StaticResource TitleTextColor}"
+                                        x:Name="date_expected"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="StartAndExpand" />
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Delivery Time" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <TimePicker FontSize="15"
+                                        Format="hh:mm:tt"
+                                        Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-4,10,0,10'}"
+                                        FontFamily="UlmGroteskBold"
+                                        TextColor="{StaticResource TitleTextColor}"
+                                        x:Name="time_expected"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="StartAndExpand" />
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Total Amount" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <utility1:BorderlessEntry Placeholder="Total Amount"
+                                                      FontSize="15"
+                                                      FontFamily="UlmGroteskBold"
+                                                      x:Name="ent_price"
+                                                      IsHideLine="True"
+                                                      Unfocused="ent_price_Unfocused"
+                                                      Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-3,10,0,10'}"
+                                                      TextColor="{StaticResource TitleTextColor}"
+                                                      PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                      HorizontalOptions="FillAndExpand"
+                                                      VerticalOptions="StartAndExpand" />
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     IsVisible="true"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   IsVisible="true"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Advance" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <utility1:BorderlessEntry Placeholder="Advance"
+                                                      Keyboard="Numeric"
+                                                      IsHideLine="True"
+                                                      IsVisible="true"
+                                                      FontFamily="UlmGroteskBold"
+                                                      FontSize="15"
+                                                      x:Name="ent_advance"
+                                                      Unfocused="ent_advance_Unfocused"
+                                                      Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-2,10,0,10'}"
+                                                      HorizontalTextAlignment="Start"
+                                                      TextColor="{StaticResource TitleTextColor}"
+                                                      PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                      HorizontalOptions="FillAndExpand"
+                                                      VerticalOptions="StartAndExpand" />
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     IsVisible="true"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   IsVisible="true"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Balance" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <utility1:BorderlessEntry Placeholder="Balance"
+                                                      Keyboard="Numeric"
+                                                      IsHideLine="True"
+                                                      IsVisible="true"
+                                                      FontFamily="UlmGroteskBold"
+                                                      FontSize="15"
+                                                      IsEnabled="False"
+                                                      x:Name="ent_balance"
+                                                      Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-2,10,0,10'}"
+                                                      HorizontalTextAlignment="Start"
+                                                      TextColor="{StaticResource TitleTextColor}"
+                                                      PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                      HorizontalOptions="FillAndExpand"
+                                                      VerticalOptions="StartAndExpand" />
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Upload Image" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <StackLayout Orientation="Horizontal">
+                                <utility1:BorderlessEntry Placeholder="Upload Image"
+                                                          FontSize="15"
+                                                          IsReadOnly="True"
+                                                          FontFamily="UlmGroteskBold"
+                                                          IsHideLine="True"
+                                                          x:Name="ent_upload"
+                                                          Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-3,10,0,10'}"
+                                                          TextColor="{StaticResource TitleTextColor}"
+                                                          PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                          HorizontalOptions="FillAndExpand"
+                                                          VerticalOptions="StartAndExpand" />
+                                <ImageButton Source="picture.png"
+                                             HorizontalOptions="End"
+                                             VerticalOptions="Start"
+                                             HeightRequest="35"
+                                             Clicked="ImageButtonClicked"
+                                             WidthRequest="35"
+                                             BackgroundColor="White" />
+                            </StackLayout>
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Artist" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <combobox:SfComboBox Watermark="Artist"
+                                                 TextSize="15"
+                                                 ShowBorder="False"
+                                                 FontFamily="UlmGroteskBold"
+                                                 Margin="-4,0,0,0" 
+                                                 SelectionChanged="Combo_artist_SelectionChanged"
+                                                 x:Name="combo_artist"
+                                                 DisplayMemberPath="name"
+                                                 WatermarkColor="{StaticResource PlaceHolderColor}"
+                                                 TextColor="{StaticResource TitleTextColor}"
+                                                 IsEditableMode="False"
+                                                 HeightRequest="40">
+                                <combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings   Height="15"
+                                                                       Width="15">
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Image Source="down_arrow.png"
+                                                   Margin="0"
+                                                   HeightRequest="15"
+                                                   VerticalOptions="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                    </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                            </combobox:SfComboBox>
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,15" />
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="0"
+                                         Margin="-5,5"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="FillAndExpand">
+                                <CheckBox HorizontalOptions="Start"
+                                          x:Name="chk_caption"
+                                          CheckedChanged="chk_caption_CheckedChanged"
+                                          VerticalOptions="FillAndExpand"
+                                          IsChecked="False"></CheckBox>
+                                <Label HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       Text="Caption"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-5"
+                                       Style="{StaticResource LabelNameStyle}"></Label>
+                            </StackLayout>
+                            <Label HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="EndAndExpand"
+                                   VerticalTextAlignment="End"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,-5"
+                                   IsVisible="false"
+                                   x:Name="lbl_caption"
+                                   Style="{StaticResource LabelNameStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span   LineHeight="0.98"
+                                                Text="Caption" />
+                                        <Span TextColor="Red"
+                                              Text="*"
+                                              Style="{StaticResource TitleText}"
+                                              FontSize="20" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <utility1:BorderlessEntry Placeholder="Caption"
+                                                      FontSize="15"
+                                                      IsVisible="false"
+                                                      FontFamily="UlmGroteskBold"
+                                                      x:Name="ent_remarks"
+                                                      IsHideLine="True"
+                                                      Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-3,10,0,10'}"
+                                                      TextColor="{StaticResource TitleTextColor}"
+                                                      PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                      HorizontalOptions="FillAndExpand"
+                                                      VerticalOptions="StartAndExpand" />
+                            <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                     WidthRequest="5"
+                                     HeightRequest="1"
+                                     Margin="0,0,0,0" />
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="0"
+                                         Margin="-5,5"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="FillAndExpand">
+                                <CheckBox HorizontalOptions="Start"
+                                          x:Name="chk_video"
+                                          VerticalOptions="FillAndExpand"
+                                          IsChecked="False"></CheckBox>
+                                <Label HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       Text="Making Video"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-5"
+                                       Style="{StaticResource LabelNameStyle}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="0"
+                                 Margin="0,0,1,0"
+                                 Padding="0"
+                                 HorizontalOptions="EndAndExpand">
+                        <Button Text="Cancel"
+                                Clicked="Cancel_Clicked"
+                                BackgroundColor="{StaticResource BodyBgColor}"
+                                TextColor="Red"
+                                TextTransform="None"
+                                FontFamily="UlmGroteskBold"
+                                FontSize="12"
+                                CornerRadius="{OnPlatform Android=30 ,iOS=20}"
+                                Padding="{OnPlatform Android='10,0,10,0', iOS=10}"
+                                WidthRequest="80"
+                                HeightRequest="40"
+                                Margin="0,20,15,20"
+                                VerticalOptions="CenterAndExpand" />
+                        <Button Text="Edit Order"
+                                Clicked="submit_clicked"
+                                BackgroundColor="{StaticResource ThemeDarkGreenColor}"
+                                TextColor="White"
+                                TextTransform="None"
+                                FontFamily="UlmGroteskBold"
+                                FontSize="12"
+                                CornerRadius="{OnPlatform Android=30 ,iOS=20}"
+                                Padding="{OnPlatform Android='10,0,10,0', iOS=10}"
+                                WidthRequest="155"
+                                HeightRequest="40"
+                                Margin="0,20,0,20"
+                                HorizontalOptions="End"
+                                VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BigIndianArts.Views.PrivacyPolicyPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     Padding="0"
+                     BackgroundColor="{StaticResource BodyBgColor}">
+
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <Label Text="Privacy Policy"
+                           Style="{StaticResource TitleBarLabel}"
+                           FontSize="19"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+                </StackLayout>
+            </Grid>
+            <!--/Title bar-->
+            <StackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand">
+                <WebView  VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand"
+                          x:Name="web_PrivacyPolicy" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

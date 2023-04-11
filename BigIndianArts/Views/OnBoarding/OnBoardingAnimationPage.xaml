@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BigIndianArts.Views.OnBoarding.OnBoardingAnimationPage"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+            
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:viewModel="clr-namespace:BigIndianArts.ViewModels"
+             xmlns:behavior1="clr-namespace:BigIndianArts.OnBoardingHelpers"
+             ios:Page.UseSafeArea="true"
+             
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <DataTemplate x:Key="ItemTemplate">
+                <ContentPresenter Content="{Binding RotatorItem}" />
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewModel:OnBoardingAnimationViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource BodyBgColor}"
+              ColumnDefinitions="*">
+            <Grid.RowDefinitions>
+                <!--  Skip Button  -->
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+
+            <!--  Gradient view  -->
+            <!--<gradient:SfGradientView Grid.RowSpan="3" Style="{StaticResource SfGradientViewStyle}" />-->
+
+            <!--  Skip button  -->
+            <button:SfButton x:Name="SkipButton"
+                             Grid.Row="0"
+                             Margin="{core:OnPlatformOrientationThickness AndroidPhonePortrait='0,10,10,0',
+                                                             AndroidPhoneLandscape='0,10,10,0',
+                                                             iOSPhonePortrait='0,20,10,0',
+                                                             iOSPhoneLandscape='0,10,10,0'}"
+                             BackgroundColor="{StaticResource BodyBgColor}"
+                             Command="{Binding SkipCommand}"
+                             CornerRadius="{OnPlatform Android=20 , iOS=12}"
+                             HeightRequest="40"
+                             HorizontalOptions="End"
+                             IsVisible="{Binding IsSkipButtonVisible}"
+                             Text="SKIP"
+                             TextColor="{StaticResource LightGreenColor}"
+                             VerticalOptions="StartAndExpand"
+                             WidthRequest="80" />
+
+            <!--  Rotator used to navigate the view  -->
+            <rotator:SfRotator x:Name="Rotator"
+                               Grid.Row="1"
+                               Margin="{x:OnIdiom Phone='15,0,15,0',
+                                   Desktop='0',
+                                   Tablet='0'}"
+                               NavigationStripPosition="Bottom"
+                               NavigationStripMode="Dots"
+                               DotsBorderColor="{StaticResource LightGreenColor}"
+                               SelectedDotColor="{StaticResource LightGreenColor}"
+                               BackgroundColor="Transparent"
+                               DotPlacement="OutSide"
+                               EnableLooping="False"
+                               EnableSwiping="True"
+                               VerticalOptions="FillAndExpand"
+                               HorizontalOptions="FillAndExpand"
+                               ItemTemplate="{StaticResource ItemTemplate}"
+                               ItemsSource="{Binding Boardings}"
+                               NavigationDirection="Horizontal"
+                               SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                               WidthRequest="{core:OnPlatformOrientationDoubleValue Default=600,
+                                                                     AndroidPhonePortrait=400,
+                                                                     AndroidPhoneLandscape=200,
+                                                                     iOSPhonePortrait=400,
+                                                                     iOSPhoneLandscape=200}">
+                <rotator:SfRotator.Behaviors>
+                    <behavior1:SfRotatorBehavior />
+                </rotator:SfRotator.Behaviors>
+            </rotator:SfRotator>
+
+            <!--  Next button  -->
+
+            <button:SfButton x:Name="NextButtonText"
+                             Grid.Row="2"
+                             WidthRequest="200"
+                             BackgroundColor="{StaticResource LightGreenColor}"
+                             TextColor="White"
+                             Command="{Binding NextCommand}"
+                             CommandParameter="{x:Reference Rotator}"
+                             Style="{StaticResource SfButtonStyle}">
+                <button:SfButton.Content>
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="0,2,2,5"
+                                 HorizontalOptions="CenterAndExpand"
+                                 Spacing="3">
+                        <Label Text="{Binding NextButtonText}"
+                               FontSize="17"
+                               VerticalTextAlignment="Center"
+                               TextColor="White"
+                               HorizontalOptions="CenterAndExpand" />
+                        <Image Source="back"
+                               WidthRequest="16"
+                               Rotation="180"
+                               Margin="0,0,-10,0"
+                               IsVisible="{Binding IsSkipButtonVisible}"
+                               HorizontalOptions="EndAndExpand" />
+
+                    </StackLayout>
+                </button:SfButton.Content>
+            </button:SfButton>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

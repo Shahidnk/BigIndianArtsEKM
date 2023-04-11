@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="http://rotorgames.com"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:utility1="clr-namespace:BigIndianArts.CustomControls"
+                  x:Class="BigIndianArts.Views.ProductSearchPopupPage"
+                  xmlns:sfEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation PositionIn="Bottom"
+                                   PositionOut="Bottom"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8"
+                                   DurationIn="400"
+                                   DurationOut="300"
+                                   EasingIn="Linear"
+                                   EasingOut="Linear"
+                                   HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     Padding="0"
+                     BackgroundColor="{StaticResource BodyBgColor}">
+
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <!--<ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />-->
+                    <Grid VerticalOptions="FillAndExpand"
+                          Padding="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <ImageButton Source="search"
+                                     VerticalOptions="CenterAndExpand"
+                                     BackgroundColor="Transparent"
+                                     Clicked="OnclickSerchbutton"
+                                     HorizontalOptions="End"
+                                     HeightRequest="30"
+                                     Grid.Column="0"
+                                     Margin="20,0,0,0" />
+                        <utility1:BorderlessEntry  x:Name="ent_SearchBox"
+                                                   VerticalOptions="EndAndExpand"
+                                                   Placeholder="What do you need"   
+                                                   Grid.Column="1"
+                                                   FontSize="18"
+                                                   FontFamily="UlmGroteskBold"
+                                                   TextChanged="Onsearching"
+                                                   PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                   TextColor="{StaticResource TitleTextColor}"
+                                                   IsHideLine="True"
+                                                   VerticalTextAlignment="Start"
+                                                   Margin="10,0,0,3" />
+
+                        <Grid Padding="0"
+                              Margin="0"
+                              Grid.Column="2">
+                            <ImageButton x:Name="btn_toFocusSearch"
+                                         Source="close_grey"
+                                         Opacity="0"
+                                         VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="Transparent"
+                                         Clicked="OnFocusSearchButtonClicked"
+                                         HorizontalOptions="End"
+                                         HeightRequest="40"
+                                         WidthRequest="40"
+                                         Margin="0,0,13,0"
+                                         Padding="10" />
+
+                            <ImageButton x:Name="btn_close"
+                                         IsVisible="false"
+                                         Source="close_grey"
+                                         Opacity="0.5"
+                                         VerticalOptions="CenterAndExpand"
+                                         BackgroundColor="Transparent"
+                                         Clicked="OnClearSearchClicked"
+                                         HorizontalOptions="End"
+                                         HeightRequest="42"
+                                         WidthRequest="42"
+                                         Margin="0,0,13,0"
+                                         Padding="12" />
+                        </Grid>
+                    </Grid>
+                </StackLayout>
+               
+            </Grid>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             Margin="20,20,0,0"
+                             IsVisible="true">
+                    
+                    <Label Text="Best Selling"
+                           FontSize="20"
+                           FontFamily="UlmGroteskBold"
+                           TextColor="Black"
+                           Margin="2,5,0,3" />
+
+                </StackLayout>
+                <CollectionView x:Name="cv_services"
+                                HorizontalScrollBarVisibility="Default"
+                                Margin="30,0,30,0"
+                                VerticalOptions="Start"
+                                BackgroundColor="Transparent"
+                               >
+
+                    <CollectionView.Header>
+                        <StackLayout WidthRequest="0" />
+                    </CollectionView.Header>
+
+                    <CollectionView.Footer>
+                        <StackLayout WidthRequest="0" />
+                    </CollectionView.Footer>
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                           HorizontalItemSpacing="2"
+                                           VerticalItemSpacing="2"
+                                           Span="2" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <sfEffectsView:SfEffectsView TouchDownEffects="Ripple"
+                                                         Padding="5,5,10,5"
+                                                         Margin="0,0,0,5"
+                                                         CornerRadius="5">
+                                <Frame CornerRadius="10">
+
+                                    <Grid RowDefinitions="auto,50,auto,auto,auto,auto"
+                                          
+                                          VerticalOptions="FillAndExpand"
+                                          HorizontalOptions="FillAndExpand"
+                                          BackgroundColor="White"
+                                          Padding="0"
+                                          Margin="0,-20,0,0">
+                                        <Grid Grid.Row="0"
+                                              HorizontalOptions="EndAndExpand"
+                                              VerticalOptions="StartAndExpand">
+                                            <Image Source="bookmarkgray.png"
+                                                   HeightRequest="25"
+                                                   WidthRequest="25"
+                                                   Grid.Column="1"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="EndAndExpand"
+                                                   x:Name="img_WishlistWhite"
+                                                   IsVisible="true">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="WishList_Clicked">
+
+                                                    </TapGestureRecognizer>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Image Source="bookmark.png"
+                                                   HeightRequest="25"
+                                                   WidthRequest="25"
+                                                   Grid.Column="1"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="EndAndExpand"
+                                                   x:Name="img_Wishlistred"
+                                                   IsVisible="false">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="WishList_Clicked">
+
+                                                    </TapGestureRecognizer>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+                                        <!--  Store image  -->
+                                        <Image Grid.Row="1"
+                                               Margin="0,0,0,1"
+                                               Aspect="AspectFit"
+                                               BackgroundColor="White"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               Source="demo2">
+                                            <!--<Image.Source>
+                                                                <UriImageSource Uri="{Binding Image}" 
+                                                                CacheValidity="1" 
+                                                                CachingEnabled="true"/>
+                                                            </Image.Source>-->
+                                        </Image>
+
+                                        <!--  Service name  -->
+                                        <Label Grid.Row="2"
+                                               FontSize="16"
+                                               Margin="5,0,0,5"
+                                               HorizontalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalOptions="StartAndExpand"
+                                               FontFamily="UlmGroteskBold"
+                                               MaxLines="2"
+                                               Text="WingBack" />
+                                        <Label Grid.Row="3"
+                                               FontSize="8"
+                                               Margin="5,0"
+                                               HorizontalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalOptions="StartAndExpand"
+                                               FontFamily="UlmGroteskBold"
+                                               MaxLines="2"
+                                               Text="WingBackdadafdasdWingBackdadafdasdWingBackdadafdasdWingBackdadafdasd" />
+                                        <Label Grid.Row="4"
+                                               FontSize="8"
+                                               Margin="5,0"
+                                               HorizontalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalOptions="StartAndExpand"
+                                               FontFamily="UlmGroteskBold"
+                                               MaxLines="1"
+                                               Text="WingBackdadafdasd" />
+                                        <Label Grid.Row="5"
+                                               FontSize="18"
+                                               Margin="5,0"
+                                               TextColor="{StaticResource LightGreenColor}"
+                                               HorizontalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalOptions="StartAndExpand"
+                                               FontFamily="UlmGroteskBold"
+                                               MaxLines="1"
+                                               Text="$5000" />
+
+                                        <!--<StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ServiceListItem_Tapped"
+                                                                  CommandParameter="{Binding .}" />
+                                            -->
+                                        <!--<TapGestureRecognizer 
+                                                        Command="{Binding Path=BindingContext.ServiceTappedCommand, 
+                                                        Source={x:Reference page_dashboard}}"
+                                                        CommandParameter="{Binding .}"/>-->
+                                        <!--
+                                        </StackLayout.GestureRecognizers>-->
+                                    </Grid>
+                                </Frame>
+                                <sfEffectsView:SfEffectsView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ServiceListItem_Tapped"
+                                                          CommandParameter="{Binding .}" />
+                                </sfEffectsView:SfEffectsView.GestureRecognizers>
+
+                            </sfEffectsView:SfEffectsView>
+                            <!--<BoxView BackgroundColor="Gray" HeightRequest="4"
+                                                             VerticalOptions="EndAndExpand"
+                                                             Grid.Row="1"/>-->
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

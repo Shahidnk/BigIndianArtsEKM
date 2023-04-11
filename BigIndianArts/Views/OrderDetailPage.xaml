@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BigIndianArts.Views.OrderDetailPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             ios:Application.EnableAccessibilityScalingForNamedFontSizes="false"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     Padding="0"
+                     BackgroundColor="{StaticResource BodyBgColor}">
+
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <Label Text="Order Details"
+                           Style="{StaticResource TitleBarLabel}"
+                           FontSize="19"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+                </StackLayout>
+            </Grid>
+            <!--/Title bar-->
+            <StackLayout>
+                <CollectionView x:Name="cv_services"
+                                HorizontalScrollBarVisibility="Default"
+                                Margin="30,5,30,5"
+                                VerticalOptions="Start"
+                                BackgroundColor="Transparent"
+                                >
+
+                    <CollectionView.Header>
+                        <StackLayout>
+                            <Label Text="Current Address"
+                                   FontSize="22"
+                                   TextColor="{StaticResource PlaceHolderColor}"
+                                   Margin="0,10,0,10"
+                                   FontFamily="UlmGroteskBold"/>
+                            <Label Text="John Doe"
+                                   FontSize="18" FontAttributes="Bold"
+                                   TextColor="{StaticResource ProductTitleTextColor}"
+                                   Margin="0,10,0,10"
+                                   FontFamily="UlmGroteskBold" />
+                            <Label Text="no123 street almana,"
+                                   FontSize="14"
+                                   FontFamily="UlmGroteskBold"
+                                   TextColor="{StaticResource PlaceHolderColor}"
+                                   Margin="0,0,0,0" />
+                            <Label Text="Main street,"
+                                   FontFamily="UlmGroteskBold"
+                                   FontSize="14"
+                                   TextColor="{StaticResource PlaceHolderColor}"
+                                   Margin="0,0,0,0" />
+                            <Label Text="CityName,Provinance,"
+                                   FontSize="14"
+                                   FontFamily="UlmGroteskBold"
+                                   TextColor="{StaticResource PlaceHolderColor}"
+                                   Margin="0,0,0,0" />
+                            <Label Text="Countr,"
+                                   FontSize="14"
+                                   FontFamily="UlmGroteskBold"
+                                   TextColor="{StaticResource PlaceHolderColor}"
+                                   Margin="0,0,0,10" />
+                            <Label Text="Edit Address"
+                                   FontSize="16"
+                                   FontFamily="UlmGroteskBold"
+                                   FontAttributes="Bold"
+                                   TextColor="Blue" 
+                                   Margin="0,10,0,10" />
+                        </StackLayout>
+                    </CollectionView.Header>
+
+                    <CollectionView.Footer>
+                        <StackLayout WidthRequest="0" />
+                    </CollectionView.Footer>
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                           ItemSpacing="15" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame 
+                                   HeightRequest="100"
+                                   Padding="5"
+                                   CornerRadius="10"
+                                   BackgroundColor="{Binding FrameBackground}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                                          CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                                <Grid HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      ColumnDefinitions="*,2*"
+                                      RowDefinitions="85"
+                                      Padding="5" Margin="5"
+                                      ColumnSpacing="2">
+                                    <Frame Margin="0"
+                                           Padding="0"
+                                           Grid.Row="0"
+                                           Grid.Column="0"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="CenterAndExpand"
+                                           HasShadow="True">
+                                        <Image Source="demo1.png"
+                                               Aspect="AspectFill"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="FillAndExpand" />
+                                    </Frame>
+                                    <Grid HorizontalOptions="FillAndExpand"
+                                          Grid.Column="1"
+                                          Grid.Row="0"
+                                          VerticalOptions="FillAndExpand"
+                                          RowDefinitions="auto,auto,auto,auto"
+                                          Padding="0"
+                                          Margin="5">
+                                        <StackLayout Orientation="Horizontal"
+                                                     Grid.Row="0">
+                                            <Label Text="WingBack Chair"
+                                                   FontFamily="UlmGroteskBold"
+                                                   TextColor="{StaticResource ProductTitleTextColor}"
+                                                   HorizontalOptions="Start"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalOptions="Start"
+                                                   FontAttributes="Bold"
+                                                   VerticalTextAlignment="Start"
+                                                   FontSize="12" />
+                                            <Label Text="$1500"
+                                                   FontFamily="UlmGroteskBold"
+                                                   TextColor="{StaticResource LightGreenColor}"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalOptions="Start"
+                                                   FontAttributes="Bold"
+                                                   VerticalTextAlignment="Start"
+                                                   FontSize="12" />
+                                        </StackLayout>
+                                        <Label Text="Quantity: 1"
+                                               FontFamily="UlmGroteskBold"
+                                               Grid.Row="1"
+                                               TextColor="{StaticResource PlaceHolderColor}"
+                                               HorizontalOptions="Start"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalOptions="Start"
+                                               VerticalTextAlignment="Start"
+                                               FontSize="10" />
+                                        <Label Text="Color: Royal blue"
+                                               FontFamily="UlmGroteskBold"
+                                               Grid.Row="2"
+                                               TextColor="{StaticResource PlaceHolderColor}"
+                                               HorizontalOptions="Start"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalOptions="Start"
+                                               VerticalTextAlignment="Start"
+                                               FontSize="10" />
+                                        <!--<StackLayout Orientation="Horizontal"
+                                                     Spacing="0"
+                                                     Grid.Row="3">
+                                            <Image Source="delete.png"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Start" />
+                                            <Label Text="Remove"
+                                                   FontAttributes="Bold"
+                                                   TextColor="{StaticResource LightGreenColor}"
+                                                   HorizontalOptions="Start"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalOptions="Start"
+                                                   VerticalTextAlignment="Start"
+                                                   FontSize="10" />
+                                        </StackLayout>-->
+                                    </Grid>
+
+                                </Grid>
+
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+            <Frame HasShadow="True">
+                <Grid HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      RowDefinitions="auto,auto,auto,auto"
+                      ColumnDefinitions="*,*"
+                      RowSpacing="10"
+                      Margin="30,5,30,0">
+
+
+                    <Label Text="Total"
+                           FontFamily="UlmGroteskBold"
+                           Grid.Row="2"
+                           Margin="0,10,0,30"
+                           Grid.Column="0"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource ProductTitleTextColor}"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           VerticalOptions="Start"
+                           VerticalTextAlignment="Start"
+                           FontSize="24" />
+                    <Label Text="50USD"
+                           FontFamily="UlmGroteskBold"
+                           Margin="0,10,0,30"
+                           Grid.Row="2"
+                           Grid.Column="1"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource LightGreenColor}"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Start"
+                           VerticalTextAlignment="Start"
+                           FontSize="24" />
+                    <Button Text="Next"
+                            FontFamily="UlmGroteskBold"
+                            Margin="0,30,0,0"
+                            TextTransform="None"
+                            TextColor="White"
+                            BackgroundColor="{StaticResource LightGreenColor}"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            CornerRadius="3"
+                            HeightRequest="50"
+                            Clicked="next_button_Clicked" />
+                </Grid>
+
+
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

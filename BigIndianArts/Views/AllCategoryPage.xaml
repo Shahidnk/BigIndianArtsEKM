@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+             x:Class="BigIndianArts.Views.AllCategoryPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     Padding="0"
+                     BackgroundColor="{StaticResource BodyBgColor}">
+
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <Label Text="All Categories"
+                           Style="{StaticResource TitleBarLabel}"
+                           FontSize="19"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+                </StackLayout>
+            </Grid>
+            <!--/Title bar-->
+            <StackLayout>
+                <CollectionView x:Name="cv_services"
+                                HorizontalScrollBarVisibility="Default"
+                                Margin="30,0,30,0"
+                                VerticalOptions="FillAndExpand"
+                                BackgroundColor="Transparent">
+
+                    <CollectionView.Header>
+                        <StackLayout WidthRequest="0" />
+                    </CollectionView.Header>
+
+                    <CollectionView.Footer>
+                        <StackLayout WidthRequest="0" />
+                    </CollectionView.Footer>
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         HorizontalItemSpacing="1"
+                                         VerticalItemSpacing="1"
+                                         Span="3" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <sfEffectsView:SfEffectsView TouchDownEffects="Ripple"
+                                                         Padding="5,5,5,5"
+                                                         Margin="0,0,0,0"
+                                                         CornerRadius="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Frame CornerRadius="10">
+
+                                    <Grid RowDefinitions="50,auto"
+                                          VerticalOptions="FillAndExpand"
+                                          HorizontalOptions="FillAndExpand"
+                                          BackgroundColor="White"
+                                          Padding="0"
+                                          Margin="0,0,0,0">
+                                        
+                                        <!--  Store image  -->
+                                        <Image Grid.Row="0"
+                                               Margin="0,0,0,1"
+                                               Aspect="AspectFit"
+                                               BackgroundColor="White"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               Source="demo2">
+                                            <!--<Image.Source>
+                                                                <UriImageSource Uri="{Binding Image}" 
+                                                                CacheValidity="1" 
+                                                                CachingEnabled="true"/>
+                                                            </Image.Source>-->
+                                        </Image>
+
+                                        <!--  Service name  -->
+                                        <Label Grid.Row="1"
+                                               FontSize="16"
+                                               Margin="5,0,0,5"
+                                               HorizontalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalOptions="StartAndExpand"
+                                               FontFamily="UlmGroteskBold"
+                                               MaxLines="2"
+                                               Text="Casual" />
+                                       
+                                    </Grid>
+                                </Frame>
+                                <sfEffectsView:SfEffectsView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ServiceListItem_Tapped"
+                                                          CommandParameter="{Binding .}" />
+                                </sfEffectsView:SfEffectsView.GestureRecognizers>
+
+                            </sfEffectsView:SfEffectsView>
+                            <!--<BoxView BackgroundColor="Gray" HeightRequest="4"
+                                                             VerticalOptions="EndAndExpand"
+                                                             Grid.Row="1"/>-->
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

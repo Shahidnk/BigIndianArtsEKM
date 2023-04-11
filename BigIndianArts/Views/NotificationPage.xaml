@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+             xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             xmlns:contentView="clr-namespace:BigIndianArts.Templates"
+             x:Class="BigIndianArts.Views.NotificationPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     Padding="0"
+                     BackgroundColor="#e0e0e0">
+
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <Label Text="Notifications"
+                           Style="{StaticResource TitleBarLabel}"
+                           FontSize="19"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+                </StackLayout>
+            </Grid>
+            <!--/Title bar-->
+            <StackLayout>
+                <CollectionView x:Name="cv_services"
+                                HorizontalScrollBarVisibility="Default"
+                                Margin="10,5,10,5"
+                                VerticalOptions="Start"
+                                BackgroundColor="Transparent">
+
+
+
+                    <CollectionView.Footer>
+                        <StackLayout WidthRequest="0" />
+                    </CollectionView.Footer>
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                           ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        
+                                     
+                                        <SwipeItem 
+                                                   IconImageSource="delete.png"
+                                                   BackgroundColor="Transparent"
+                                                   Invoked="OnDeleteSwipeItemInvoked" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                              
+                            <sfEffectsView:SfEffectsView TouchDownEffects="Ripple"
+                                                       
+                                                        
+                                                       
+                                                         HorizontalOptions="FillAndExpand"
+                                                         VerticalOptions="FillAndExpand">
+                                    <Frame Padding="0"
+                                           Margin="0"
+                                           CornerRadius="0"
+                                           BackgroundColor="{Binding BgColour}"
+                                           HasShadow="True">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                                                  CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                        </Frame.GestureRecognizers>
+                                        <Grid HorizontalOptions="FillAndExpand"
+                                              VerticalOptions="FillAndExpand"
+                                              ColumnDefinitions="auto,2*"
+                                             RowDefinitions="55"
+                                              Padding="0"
+                                              Margin="5"
+                                              ColumnSpacing="2">
+                                            <Grid Grid.Column="0"
+                                                  Grid.Row="0">
+                                                <!--<sfavatar:SfAvatarView ImageSource="bell"
+                                                                       HeightRequest="10"
+                                                                       WidthRequest="10"
+                                                                       BackgroundColor="{StaticResource PlaceHolderColor}"
+                                                                       ContentType="Custom"
+                                                                       AvatarShape="Circle"
+                                                                       AvatarSize="Large"
+                                                                       HorizontalOptions="Center"
+                                                                       VerticalOptions="CenterAndExpand"
+                                                                       BorderColor="{StaticResource ThemeColor}"
+                                                                       BorderWidth="2"
+                                                                       HasShadow="False">-->
+
+                                                <!--</sfavatar:SfAvatarView>-->
+
+                                                <Image Source="{Binding icon}"
+                                                       HeightRequest="40"
+                                                       WidthRequest="40"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Start"
+                                                       BackgroundColor="Transparent" />
+
+                                            </Grid>
+                                            <Grid HorizontalOptions="FillAndExpand"
+                                                  Grid.Column="1"
+                                                  Grid.Row="0"
+                                                  VerticalOptions="Start"
+                                                  RowDefinitions="auto,auto,auto"
+                                                  Padding="0"
+                                                  Margin="5,0,0,0">
+                                                <Label Text="{Binding title}"
+                                                       Grid.Row="0"
+                                                       FontFamily="UlmGroteskBold"
+                                                       TextColor="{StaticResource LightGreenColor}"
+                                                       HorizontalOptions="Start"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalOptions="Start"
+                                                       FontAttributes="Bold"
+                                                       VerticalTextAlignment="Start"
+                                                       FontSize="12" />
+                                                <Label FontFamily="UlmGroteskBold"
+                                                       Text="{Binding createdOn}"
+                                                       Grid.Row="1"
+                                                       TextColor="{StaticResource ProductTitleTextColor}"
+                                                       HorizontalOptions="Start"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalOptions="Start"
+                                                       VerticalTextAlignment="Start"
+                                                       FontSize="8">
+                                                    
+                                                </Label>
+                                                <Label FontFamily="UlmGroteskBold"
+                                                       Grid.Row="2"
+                                                       TextColor="{StaticResource ProductTitleTextColor}"
+                                                       HorizontalOptions="Start"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalOptions="Start"
+                                                       VerticalTextAlignment="Start"
+                                                       FontSize="10">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <FormattedString.Spans>
+                                                                <!--<Span Text="Order #" />
+                                                                <Span Text="{Binding order_id}" />
+                                                                <Span Text=" " />-->
+                                                                <Span Text="{Binding status}" />
+                                                            </FormattedString.Spans> 
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                      
+                                                </Label>
+                                            </Grid>
+
+                                        </Grid>
+
+                                    </Frame>
+                                    <sfEffectsView:SfEffectsView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ServiceListItem_Tapped"
+                                                          CommandParameter="{Binding .}" />
+                                </sfEffectsView:SfEffectsView.GestureRecognizers>
+
+                            </sfEffectsView:SfEffectsView>
+                               
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <StackLayout VerticalOptions="CenterAndExpand"
+                                     x:Name="Stk_Pending_noData">
+                            <contentView:NoDataContentView VerticalOptions="CenterAndExpand"
+                                                           HorizontalOptions="CenterAndExpand"
+                                                           IsVisible="True" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

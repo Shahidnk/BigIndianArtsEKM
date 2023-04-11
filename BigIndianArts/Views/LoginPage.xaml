@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BigIndianArts.Views.LoginPage"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            
+            
+             xmlns:renderers="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:renderers1="clr-namespace:BigIndianArts.CustomControls"
+             ios:Page.UseSafeArea="true"
+             ios:Application.EnableAccessibilityScalingForNamedFontSizes="false">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
+            <Grid HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Image 
+                       Source="{AppThemeBinding Light=logopng.png, Dark=darklogo.png}"
+                       HorizontalOptions="CenterAndExpand"
+                       Grid.Row="0"
+                       WidthRequest="250"
+                       Grid.RowSpan="1"
+                       VerticalOptions="CenterAndExpand" />
+                <StackLayout Orientation="Vertical"
+                             VerticalOptions="CenterAndExpand"
+                             Grid.Row="1"
+                             Grid.RowSpan="2">
+                    <Frame BackgroundColor="White" HasShadow="True"
+                           BorderColor="LightGray"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="10,5"
+                           Padding="5"
+                           CornerRadius="30">
+                    <renderers1:BorderlessEntry FontSize="14"
+                                                IsHideLine="True"
+                                                Placeholder="User Name"
+                                                x:Name="ent_userName"
+                                                FontFamily="UlmGroteskBold"
+                                                PlaceholderColor="Black"
+                                                    TextColor="Black" />
+                    </Frame>
+                    <Frame BackgroundColor="White"
+                           HasShadow="True"
+                           BorderColor="LightGray"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="10,5"
+                           Padding="5"
+                           CornerRadius="30">
+                        <renderers1:BorderlessEntry FontSize="14"
+                                                IsHideLine="True"
+                                                IsPassword="True"
+                                                FontFamily="UlmGroteskBold"
+                                                Placeholder="Password"
+                                                x:Name="ent_passWord"
+                                                PlaceholderColor="Black"
+                                                    TextColor="Black" />
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Vertical"
+                             VerticalOptions="CenterAndExpand"
+                             WidthRequest="200"
+                             Grid.Row="3">
+                    <Button x:Name="btn_Login"
+                            Text="LOGIN"
+                            FontFamily="UlmGroteskBold"
+                            TextColor="White"
+                            VerticalOptions="StartAndExpand"
+                            BackgroundColor="#009900"
+                            Margin="50"
+                            IsEnabled="True"
+                            Clicked="Login"
+                            CornerRadius="30" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

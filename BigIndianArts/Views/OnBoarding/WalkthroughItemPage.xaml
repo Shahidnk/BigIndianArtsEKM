@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BigIndianArts.Views.OnBoarding.WalkthroughItemPage">
+    <ContentView.Content>
+        <StackLayout BackgroundColor="{StaticResource BodyBgColor}"
+                     Spacing="0"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
+
+            <!--  Image for display svg image  -->
+            <!--<svg1:SVGImage
+                BackgroundColor="Transparent"
+                HeightRequest="{core:OnPlatformOrientationDoubleValue Default=300,
+                                                                      AndroidPhonePortrait=200,
+                                                                      AndroidPhoneLandscape=140,
+                                                                      iOSPhonePortrait=200,
+                                                                      iOSPhoneLandscape=140}"
+                Opacity="{OnPlatform Default=0,
+                                     UWP=1}"
+                Source="{Binding ImagePath}"
+                VerticalOptions="Center"
+                WidthRequest="{x:OnIdiom Phone=200,
+                                         Desktop=300,
+                                         Tablet=300}" />-->
+
+            <Image Source="{Binding ImagePath}"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   BackgroundColor="Transparent" />
+
+            <!--  Label to display header  -->
+            <Label Margin="0,20,0,8"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Opacity="{OnPlatform Default=0,
+                                     UWP=1}"
+                   Style="{StaticResource LabelStyle}"
+                   Text="{Binding Header}"
+                   TranslationY="{OnPlatform Default=60,
+                                          UWP=0}"
+                   VerticalTextAlignment="Center" />
+
+            <!--  Label to display content  -->
+            <Label FontSize="16"
+                   HorizontalOptions="Center"
+                   Opacity="{OnPlatform Default=0,
+                                     UWP=1}"
+                   Style="{StaticResource LabelStyle}"
+                   Text="{Binding Content}"
+                   TranslationY="{OnPlatform Default=60,
+                                          UWP=0}" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

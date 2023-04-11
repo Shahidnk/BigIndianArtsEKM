@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BigIndianArts.Views.ReportMenuPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     Padding="0"
+                     BackgroundColor="{StaticResource BodyBgColor}">
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <Label Text="Report Menu"
+                           x:Name="lbl_title"
+                           Style="{StaticResource TitleBarLabel}"
+                           FontSize="19"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+                </StackLayout>
+            </Grid>
+            <!--/Title bar-->
+            <CollectionView x:Name="_collection"
+                            VerticalScrollBarVisibility="Never"
+                            Margin="12,5">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5"
+                              VerticalOptions="StartAndExpand"
+                              Margin="0">
+                            <Frame VerticalOptions="FillAndExpand"
+                                   Padding="5"
+                                   BackgroundColor="White"
+                                   Margin="0"
+                                   HasShadow="False"
+                                   CornerRadius="15"
+                                   HeightRequest="120">
+                                <Grid>
+                                    <Grid HorizontalOptions="End"
+                                          Margin="0"
+                                          Padding="0,0,0,0"
+                                          VerticalOptions="StartAndExpand"
+                                          IsVisible="{Binding CountFieldVisibility}">
+                                        <Image  Source="circle.png"
+                                                HeightRequest="27"
+                                                WidthRequest="27"
+                                                Aspect="AspectFit"
+                                                Margin="0,0,0,0" />
+                                        <Label Text="{Binding countstring}"
+                                               TextColor="Black"
+                                               FontSize="12"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               Margin="0,0,0,0" />
+                                    </Grid>
+                                    <Grid RowDefinitions="*,*"
+                                          HorizontalOptions="Center"
+                                          VerticalOptions="End"
+                                          Margin="0,0,0,0"
+                                          Padding="0,20,0,0">
+                                        <Grid HorizontalOptions="Center"
+                                              Margin="0,0,0,0"
+                                              Grid.Row="0"
+                                              Padding="0,0,0,0"
+                                              VerticalOptions="Center"
+                                              IsVisible="true">
+                                            <Grid>
+                                                <Image Source="{Binding icon}"
+                                                       IsVisible="{Binding NoImageVisible}"
+                                                       BackgroundColor="Transparent"
+                                                       WidthRequest="40"
+                                                       HeightRequest="40"
+                                                       Aspect="AspectFill"
+                                                       Margin="0,-20,0,0"
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="Center" />
+                                                <!--<Image IsVisible="{Binding MainVisible}"
+                                                               BackgroundColor="Transparent"
+                                                               WidthRequest="77"
+                                                               HeightRequest="77"
+                                                               Aspect="AspectFill"
+                                                               Margin="0,-20,0,0"
+                                                               VerticalOptions="Center"
+                                                               HorizontalOptions="Center">
+                                                            <Image.Source>
+                                                                <UriImageSource Uri="{Binding customIcon}"
+                                                                                CacheValidity="1"
+                                                                                CachingEnabled="true" />
+                                                            </Image.Source>
+                                                        </Image>-->
+                                            </Grid>
+                                        </Grid>
+                                        <Label Text="{Binding name}"
+                                               Grid.Row="1"
+                                               FontFamily="UlmGroteskRegular"
+                                               TextTransform="None"
+                                               HorizontalTextAlignment="Center"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Start"
+                                               Padding="0,10,0,10" />
+                                    </Grid>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ServiceListItem_Tapped"
+                                                          CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <StackLayout BackgroundColor="Transparent"
+                                 HeightRequest="20" />
+                </CollectionView.Footer>
+                <CollectionView.Header>
+                    <StackLayout BackgroundColor="Transparent"
+                                 HeightRequest="20" />
+                </CollectionView.Header>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

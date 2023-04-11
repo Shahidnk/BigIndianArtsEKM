@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="http://rotorgames.com"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:utility1="clr-namespace:BigIndianArts.CustomControls"
+                  x:Class="BigIndianArts.Views.MediaPopup"
+                  xmlns:sfEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation PositionIn="Bottom"
+                                   PositionOut="Bottom"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8"
+                                   DurationIn="400"
+                                   DurationOut="300"
+                                   EasingIn="Linear" 
+                                   EasingOut="Linear"
+                                   HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="End" HasShadow="True" BackgroundColor="{StaticResource BodyBgColor}">
+            <Grid RowDefinitions="*" ColumnDefinitions="*,*" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <ImageButton Source="camera" Grid.Row="0" Clicked="Camera_clicked" Grid.Column="0" HeightRequest="50" WidthRequest="50" BackgroundColor="{StaticResource BodyBgColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ImageButton>
+
+                <ImageButton Source="poster" Grid.Row="0" Clicked="Gallery_Clicked" Grid.Column="1" HeightRequest="50" WidthRequest="50" BackgroundColor="{StaticResource BodyBgColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ImageButton>
+            </Grid>
+            
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>

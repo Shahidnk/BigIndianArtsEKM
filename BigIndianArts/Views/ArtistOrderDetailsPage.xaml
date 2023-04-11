@@ -1,0 +1,563 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             x:Class="BigIndianArts.Views.ArtistOrderDetailsPage"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+             xmlns:dataTemplates="clr-namespace:BigIndianArts.DataTemplates"
+             xmlns:utility1="clr-namespace:BigIndianArts.CustomControls">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     Padding="0"
+                     BackgroundColor="{StaticResource BodyBgColor}">
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <Label Text="Order Details"
+                           Style="{StaticResource TitleBarLabel}"
+                           FontSize="19"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+                </StackLayout>
+            </Grid>
+            <!--Title bar-->
+            <ListView VerticalScrollBarVisibility="Never"
+                      x:Name="lv_timeLine"
+                      ItemTapped="timelineListView_ItemTapped"
+                      Margin="15,0,15,0"
+                      HasUnevenRows="True"
+                      VerticalOptions="FillAndExpand"
+                      SeparatorVisibility="None"
+                      SelectionMode="None"
+                      BackgroundColor="Transparent">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <dataTemplates:TimelineTemplate />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Header>
+                    <StackLayout Padding="0,25,0,10">
+                        <Frame BackgroundColor="White"
+                               CornerRadius="10"
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="0,0,0,0"
+                               Padding="15,15,15,16">
+                            <StackLayout Spacing="0"
+                                         Padding="0"
+                                         Margin="0,0,0,0">
+                               
+                                <Label Text="Online Order"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Text="--------"
+                                        Margin="0,10,0,0"
+                                        x:Name="lbl_isOnline"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Order Date"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Text="--------"
+                                        Margin="0,10,0,0"
+                                        x:Name="lbl_createdDate"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Bill Number"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Text="--------"
+                                        Margin="0,10,0,0"
+                                        x:Name="lbl_BillNumber"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" IsVisible="false" />
+                                <Label Text="Customer Name"
+                                       IsVisible="false"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        IsVisible="false"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        
+                                        Margin="0,10,0,0"
+                                        x:Name="lbl_CustomerName"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Customer Number"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Text="--------"
+                                        Margin="0,10,0,0"
+                                        x:Name="lbl_CustomerNumber"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" IsVisible="false"/>
+                                <Label Text="Order ID"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End" IsVisible="false"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label TextColor="{StaticResource TitleTextColor}"
+                                       Style="{StaticResource LabelValueStyle}"
+                                       Margin="0,10,0,0"
+                                       Text="--------"
+                                       x:Name="lbl_orderID" IsVisible="false"
+                                       HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Art Type"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Text="--------"
+                                        Margin="0,10,0,0"
+                                        x:Name="lbl_type"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Orientation"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Text="--------"
+                                        Margin="0,10,0,0"
+                                        x:Name="lbl_orientation"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Number of Faces"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Margin="0,10,0,0"
+                                        Text="--------"
+                                        x:Name="lbl_NumberFace"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Size"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Margin="0,10,0,0"
+                                        Text="--------"
+                                        x:Name="lbl_Size"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Frame"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Margin="0,10,0,0"
+                                        Text="--------"
+                                        x:Name="lbl_Frame"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Delivery Mode"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Margin="0,10,0,0"
+                                        Text="--------"
+                                        x:Name="lbl_DeliveryMode"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Delivery Date"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label TextColor="{StaticResource TitleTextColor}"
+                                       Style="{StaticResource LabelValueStyle}"
+                                       Margin="0,10,0,0"
+                                       Text="--------"
+                                       x:Name="lbl_expectedDate"
+                                       HorizontalOptions="StartAndExpand" />
+                                
+                              
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Artist Amount"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label TextColor="{StaticResource TitleTextColor}"
+                                       Style="{StaticResource LabelValueStyle}"
+                                       Margin="0,10,0,0"
+                                       x:Name="lbl_commision"
+                                       Text="--------"
+                                       HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Artist"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label TextColor="{StaticResource TitleTextColor}"
+                                       Style="{StaticResource LabelValueStyle}"
+                                       Margin="0,10,0,0"
+                                       Text="--------"
+                                       x:Name="lbl_artist"
+                                       HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Making Video"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label  TextColor="{StaticResource TitleTextColor}"
+                                        Style="{StaticResource LabelValueStyle}"
+                                        Text="--------"
+                                        Margin="0,10,0,0"
+                                        x:Name="lbl_isVideo"
+                                        HorizontalOptions="StartAndExpand" />
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                               
+                                
+                               
+
+                                <Label Text="Image"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label TextColor="{StaticResource ThemeDarkGreenColor}"
+                                       Style="{StaticResource LabelValueStyle}"
+                                       Margin="0,10,0,0"
+                                       Text="--------"
+                                       x:Name="lbl_courierService"
+                                       HorizontalOptions="StartAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer  Tapped="Image_Tapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         x:Name="bx_completed"
+                                         Margin="0,13,0,13"
+                                         IsVisible="false" />
+                                <Label Text="Completed Image"
+                                       IsVisible="false"
+                                       x:Name="lbl_completedTitle"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label TextColor="{StaticResource ThemeDarkGreenColor}"
+                                       Style="{StaticResource LabelValueStyle}"
+                                       Margin="0,10,0,0"
+                                       IsVisible="false"
+                                       Text="--------"
+                                       x:Name="lbl_Completed"
+                                       HorizontalOptions="StartAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer  Tapped="CompletedImage_Tapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,13,0,13" />
+                                <Label Text="Status"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <combobox:SfComboBox Watermark="Status"
+                                                     TextSize="15"
+                                                     ShowBorder="False"
+                                                     SelectionChanged="Combo_status_SelectionChanged"
+                                                     FontFamily="UlmGroteskBold"
+                                                     Margin="-4,10,0,0"
+                                                     x:Name="combo_status"
+                                                     WatermarkColor="{StaticResource PlaceHolderColor}"
+                                                     TextColor="{StaticResource TitleTextColor}"
+                                                     IsEditableMode="False"
+                                                     HeightRequest="40">
+                                    <combobox:SfComboBox.DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings   Height="15"
+                                                                           Width="15">
+                                            <combobox:DropDownButtonSettings.View>
+                                                <Image Source="down_arrow.png"
+                                                       Margin="0"
+                                                       HeightRequest="15"
+                                                       VerticalOptions="Center" />
+                                            </combobox:DropDownButtonSettings.View>
+                                        </combobox:DropDownButtonSettings>
+                                    </combobox:SfComboBox.DropDownButtonSettings>
+                                    <combobox:SfComboBox.ComboBoxSource>
+                                        <ListCollection:List x:TypeArguments="x:String">
+                                            <x:String>Pending</x:String>
+                                            <x:String>Processing</x:String>
+                                            
+                                            <x:String>Completed</x:String>
+                                        </ListCollection:List>
+                                    </combobox:SfComboBox.ComboBoxSource>
+                                </combobox:SfComboBox>
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                                         HeightRequest="1"
+                                         Margin="0,5,0,13" x:Name="bx_ImageUpload" IsVisible="false" />
+                                <Label HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       x:Name="lbl_ImageUpload"
+                                       IsVisible="false"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-5"
+                                       Style="{StaticResource LabelNameStyle}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span   LineHeight="0.98"
+                                                    Text="Upload Image" />
+                                            <Span TextColor="Red"
+                                                  Text="*"
+                                                  Style="{StaticResource TitleText}"
+                                                  FontSize="20" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <StackLayout Orientation="Horizontal"
+                                             x:Name="stk_ImageUpload"
+                                             IsVisible="false">
+                                    <utility1:BorderlessEntry Placeholder="Upload Image"
+                                                              FontSize="15"
+                                                              x:Name="ent_ImageUpload"
+                                                              IsReadOnly="True"
+                                                              FontFamily="UlmGroteskBold"
+                                                              IsHideLine="True"
+                                                             
+                                                              Margin="{OnPlatform Android='-4,0,0,0' ,iOS='-3,10,0,10'}"
+                                                              TextColor="{StaticResource TitleTextColor}"
+                                                              PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                              HorizontalOptions="FillAndExpand"
+                                                              VerticalOptions="StartAndExpand" />
+                                    <ImageButton Source="picture.png"
+                                                 HorizontalOptions="End"
+                                                 VerticalOptions="Start"
+                                                 HeightRequest="35"
+                                                 Clicked="ImageButtonClicked"
+                                                 WidthRequest="35"
+                                                 BackgroundColor="White" />
+                                </StackLayout>
+                                <BoxView BackgroundColor="{StaticResource SeparatorColor }"
+                                         WidthRequest="5"
+                                         HeightRequest="1"
+                                         Margin="0,0,0,15" />
+                                <Label Text="Caption"
+                                       Style="{StaticResource LabelNameStyle}"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       VerticalTextAlignment="End"
+                                       HorizontalTextAlignment="End"
+                                       Margin="0,0,0,-10" />
+                                <Label TextColor="{StaticResource TitleTextColor}"
+                                       Style="{StaticResource LabelValueStyle}"
+                                       Margin="0,10,0,0"
+                                       Text="--------"
+                                       x:Name="lbl_remarks"
+                                       HorizontalOptions="StartAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                        <!--<syncEffectsView:SfEffectsView TouchDownEffects="Ripple"
+                                                       Margin="0,0,0,0"
+                                                       Padding="0,15,0,16">
+                            <contentView:NotificationHistoryTemplate />
+                            <syncEffectsView:SfEffectsView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CommunicationHistory_Tapped"
+                                                      CommandParameter="{Binding .}" />
+                            </syncEffectsView:SfEffectsView.GestureRecognizers>
+                        </syncEffectsView:SfEffectsView>-->
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.Footer>
+                    <StackLayout 
+                                 Padding="0"
+                                 Spacing="0" IsVisible="false" x:Name="stk_footer">
+                        <Label Text="Comments"
+                               x:Name="lbl_commentSection"
+                               Style="{StaticResource TitleText}"
+                               FontSize="15" IsVisible="false"
+                               FontAttributes="Bold"
+                               Margin="2,10,0,10"></Label>
+                        <Frame BackgroundColor="White"
+                               CornerRadius="10"
+                               IsVisible="false"
+                               HasShadow="False"
+                               x:Name="frm_commentSection"
+                               VerticalOptions="FillAndExpand"
+                               HorizontalOptions="FillAndExpand"
+                               Padding="0"
+                               Margin="0">
+                            <StackLayout Spacing="0"
+                                         Padding="0"
+                                         Margin="0">
+                                <utility1:BorderlessEditor Placeholder="Please Enter Comments"
+                                                           x:Name="ent_comments"
+                                                           Margin="5,10,0,10"
+                                                           FontSize="15"
+                                                           TextColor="{StaticResource TitleTextColor}"
+                                                           PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                           HorizontalOptions="FillAndExpand"
+                                                           VerticalOptions="StartAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="0"
+                                     Margin="0,0,1,0"
+                                     Padding="0"
+                                     HorizontalOptions="EndAndExpand">
+                            <Button Text="Cancel"
+                                    Clicked="Cancel_Clicked"
+                                    BackgroundColor="{StaticResource BodyBgColor}"
+                                    TextColor="Red"
+                                    TextTransform="None"
+                                    FontFamily="UlmGroteskBold"
+                                    FontSize="12"
+                                    CornerRadius="{OnPlatform Android=30 ,iOS=20}"
+                                    Padding="{OnPlatform Android='10,0,10,0', iOS=10}"
+                                    WidthRequest="80"
+                                    HeightRequest="40"
+                                    Margin="0,20,15,20"
+                                    VerticalOptions="CenterAndExpand" />
+                            <Button Text="Submit"
+                                    Clicked="submit_clicked"
+                                    BackgroundColor="{StaticResource ThemeDarkGreenColor}"
+                                    TextColor="White"
+                                    TextTransform="None"
+                                    FontFamily="UlmGroteskBold"
+                                    FontSize="12"
+                                    CornerRadius="{OnPlatform Android=30 ,iOS=20}"
+                                    Padding="{OnPlatform Android='10,0,10,0', iOS=10}"
+                                    WidthRequest="155"
+                                    HeightRequest="40"
+                                    Margin="0,20,0,20"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </StackLayout>
+                </ListView.Footer>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

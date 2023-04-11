@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:contentView="clr-namespace:BigIndianArts.Templates"
+             xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+             x:Class="BigIndianArts.Views.GalleryPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     BackgroundColor="{StaticResource BodyBgColor}">
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <Label Text="Gallery"
+                           Style="{StaticResource TitleBarLabel}"
+                           FontSize="19"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"z
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+                </StackLayout>
+            </Grid>
+            <!--Title bar-->
+            <Grid VerticalOptions="FillAndExpand">
+                <CollectionView VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                x:Name="cv_Gallery" ItemSizingStrategy="MeasureAllItems"
+                                SelectionMode="None"
+                                BackgroundColor="{StaticResource BodyBgColor}"
+                                VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         HorizontalItemSpacing="2"
+                                         VerticalItemSpacing="2"
+                                         Span="2" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.EmptyView>
+                        <StackLayout VerticalOptions="CenterAndExpand"
+                                     x:Name="Stk_Pending_noData">
+                            <contentView:NoDataContentView VerticalOptions="CenterAndExpand"
+                                                           HorizontalOptions="CenterAndExpand"
+                                                           IsVisible="True" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <syncEffectsView:SfEffectsView TouchDownEffects="Ripple"
+                                                           Padding="15,0">
+                                <Grid Padding="0,4"
+                                      Margin="0"
+                                      BackgroundColor="{StaticResource BodyBgColor}">
+                                    <Frame BackgroundColor="White"
+                                           HasShadow="True"
+                                           Padding="5"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Vertical" Spacing="0" Padding="0">
+                                        <Image HorizontalOptions="FillAndExpand" HeightRequest="250"
+                                               VerticalOptions="FillAndExpand" Aspect="AspectFill"
+                                               Source="{Binding final_image}" />
+                                            <Label FontFamily="UlmGroteskBold"
+                                                       Text="{Binding assign_name}"
+                                                       Grid.Row="1"
+                                                       TextColor="{StaticResource ProductTitleTextColor}"
+                                                       HorizontalOptions="Start"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalOptions="Start"
+                                                       VerticalTextAlignment="Start"
+                                                       FontSize="12"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                                <syncEffectsView:SfEffectsView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Cv_selectionChanged"
+                                                          CommandParameter="{Binding .}" />
+                                </syncEffectsView:SfEffectsView.GestureRecognizers>
+                            </syncEffectsView:SfEffectsView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.Header>
+                        <StackLayout HeightRequest="11"></StackLayout>
+                    </CollectionView.Header>
+                </CollectionView>
+              
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

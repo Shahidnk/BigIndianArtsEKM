@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             x:Class="BigIndianArts.Views.UserDetailsPage">
+    <!--<Grid BackgroundColor="{StaticResource BodyBgColor}">-->
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid BackgroundColor="{StaticResource BodyBgColor}"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="0.2*" />
+                    <RowDefinition Height="0.2*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0"
+                      Grid.RowSpan="4" Grid.ColumnSpan="2"
+                     HorizontalOptions="FillAndExpand"
+                      BackgroundColor="{StaticResource LightGreenColor}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="0.2*" />
+                        <RowDefinition Height="0.55*" />
+                        <RowDefinition Height="0.25*" />
+                        <RowDefinition Height="0.025*" />
+                        <RowDefinition Height="0.15*" />
+                        <RowDefinition Height="0.15*" />
+                        <RowDefinition Height="0.05*" />
+                        <RowDefinition Height="0.1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition Width="0.18*" />
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.6*" />
+                        <ColumnDefinition Width="0.18*" />
+                        <ColumnDefinition Width="15" />
+                    </Grid.ColumnDefinitions>
+                   
+                    <sfavatar:SfAvatarView  VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            ContentType="Custom"
+                                            AvatarCharacter="Avatar10"
+                                            WidthRequest="120"
+                                            HeightRequest="120"
+                                            BorderColor="White"
+                                            CornerRadius="70"
+                                            Margin="0,-10,0,0"
+                                            x:Name="sfAvatar_profileImg"
+                                            Grid.Row="2"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="2"
+                                            Grid.ColumnSpan="2"></sfavatar:SfAvatarView>
+                    
+                    <Label Text="John honnai"
+                           x:Name="lbl_Title"
+                           FontFamily="UlmGroteskBold"
+                           VerticalOptions="End"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           FontSize="Medium"
+                           Grid.Column="2"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="5" />
+                    <StackLayout Orientation="Horizontal"
+                                 Grid.Column="2"
+                                 Grid.ColumnSpan="2"
+                                 Grid.Row="6"
+                                 HorizontalOptions="Center">
+                        <Image Source="mail.png"
+                               VerticalOptions="Start"
+                               HorizontalOptions="End"
+                               HeightRequest="15"
+                               WidthRequest="15"
+                               Margin="0,2,0,0" />
+                        <Label Text="dulabs@dublabs.in"
+                               x:Name="lbl_subTitle"
+                               FontFamily="UlmGroteskBold"
+                               VerticalOptions="Start"
+                               HorizontalOptions="Center"
+                               FontSize="Small"
+                               HorizontalTextAlignment="Start"
+                               TextColor="white"
+                               Margin="-22,0,0,0" />
+                    </StackLayout>
+                    <ImageButton Source="arrow.png"
+                                 HeightRequest="30"
+                                 WidthRequest="30"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Start"
+                                 BackgroundColor="{StaticResource LightGreenColor}"
+                                 Clicked="OnClickBackButton"
+                                 Grid.Column="1"
+                                 Grid.Row="1" />
+                    <ImageButton Source="editwhite.png"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="End"
+                                 HeightRequest="20"
+                                 WidthRequest="20" Clicked="edit_clicked"
+                             BackgroundColor="{StaticResource LightGreenColor}"
+                             Grid.Column="4"
+                                 Grid.Row="1" />
+                </Grid>
+            <StackLayout Spacing="0"
+                         Padding="0"
+                         Margin="10,0,10,0"
+                         Grid.Row="4"
+                         Grid.ColumnSpan="2">
+                <Label Text="Name"
+                       Style="{StaticResource LabelNameStyle}"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="EndAndExpand"
+                       VerticalTextAlignment="End"
+                       HorizontalTextAlignment="End"
+                       Margin="10,0,10,-10" />
+                <Label  TextColor="{StaticResource TitleTextColor}"
+                        Style="{StaticResource LabelValueStyle}"
+                        Text="--------"
+                        Margin="10,10,10,0"
+                        x:Name="lbl_name"
+                        HorizontalOptions="StartAndExpand" />
+                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                         HeightRequest="1"
+                         Margin="0,13,0,13" />
+                <Label Text="Contact Number"
+                       Style="{StaticResource LabelNameStyle}"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="EndAndExpand"
+                       VerticalTextAlignment="End"
+                       HorizontalTextAlignment="End"
+                       Margin="10,0,10,-10" />
+                <Label  TextColor="{StaticResource LightGreenColor}"
+                        Style="{StaticResource LabelValueStyle}"
+                        Text="--------"
+                        Margin="10,10,10,0"
+                        x:Name="lbl_contactNumber"
+                        HorizontalOptions="StartAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="Image_Tapped" />
+                    </Label.GestureRecognizers></Label>
+                    <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                         HeightRequest="1"
+                         Margin="0,13,0,13" />
+                <Label Text="Address"
+                       Style="{StaticResource LabelNameStyle}"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="EndAndExpand"
+                       VerticalTextAlignment="End"
+                       HorizontalTextAlignment="End"
+                       Margin="10,0,10,-10" />
+                <Label  TextColor="{StaticResource TitleTextColor}"
+                        Style="{StaticResource LabelValueStyle}"
+                        Text="--------"
+                        Margin="10,10,10,0"
+                        x:Name="lbl_address"
+                        HorizontalOptions="StartAndExpand" />
+                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                         HeightRequest="1"
+                         Margin="0,13,0,13" />
+                <Label Text="Artist Amount %"
+                       Style="{StaticResource LabelNameStyle}"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="EndAndExpand"
+                       VerticalTextAlignment="End"
+                       HorizontalTextAlignment="End"
+                       Margin="10,0,10,-10" />
+                <Label  TextColor="{StaticResource TitleTextColor}"
+                        Style="{StaticResource LabelValueStyle}"
+                        Text="--------"
+                        Margin="10,10,10,0"
+                        x:Name="lbl_commission"
+                        HorizontalOptions="StartAndExpand" />
+                <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                         HeightRequest="1"
+                         Margin="0,13,0,13" />
+                <Label Text="Emergency Contact"
+                       Style="{StaticResource LabelNameStyle}"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="EndAndExpand"
+                       VerticalTextAlignment="End"
+                       HorizontalTextAlignment="End"
+                       Margin="10,0,10,-10" />
+                <Label  TextColor="{StaticResource LightGreenColor}"
+                        Style="{StaticResource LabelValueStyle}"
+                        Text="--------" 
+                        Margin="10,10,10,0"
+                        x:Name="lbl_emergency"
+                        HorizontalOptions="StartAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="Emer_Tapped" />
+                    </Label.GestureRecognizers></Label>
+                    <BoxView BackgroundColor="{StaticResource SeparatorColor}"
+                         HeightRequest="1"
+                         Margin="0,13,0,13" />
+            </StackLayout>
+        </Grid>
+          
+        </StackLayout>
+    <!--</Grid>-->
+</ContentPage>

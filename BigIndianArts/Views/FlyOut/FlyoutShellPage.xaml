@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="BigIndianArts.Views.FlyOut.FlyoutShellPage"
+       xmlns:sfEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+       xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+       xmlns:views="clr-namespace:BigIndianArts.Views.FlyOut"
+       xmlns:local="clr-namespace:BigIndianArts"
+       xmlns:local1="clr-namespace:BigIndianArts.Views"
+       Shell.NavBarIsVisible="False"
+       Shell.BackgroundColor="White"
+       Shell.ForegroundColor="White"
+       Shell.TabBarTitleColor="Green"
+       Shell.DisabledColor="Black"
+       FlyoutHeaderBehavior="Fixed"
+       Shell.UnselectedColor="Gray"
+       x:Name="myshell" FlyoutBehavior="Flyout">
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <views:FlyoutHeader />
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    <FlyoutItem x:Name="main_tab_bar"
+                Shell.PresentationMode="Animated"
+                FlyoutIcon="menu_home.png"
+                Title="Home"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent ContentTemplate="{DataTemplate local:InternalMainPage}" />
+    </FlyoutItem>
+
+
+    <Shell.FlyoutContent>
+        <StackLayout BackgroundColor="#1a1a18"
+                     Margin="0,0,0,0"
+                     VerticalOptions="FillAndExpand"
+                     Padding="0">
+
+            <ListView x:Name="MenuItemsListView"
+                      Grid.Row="4"
+                      Grid.RowSpan="4"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="true"
+                      ItemsSource="{Binding MenuItemsListNew}"
+                      VerticalScrollBarVisibility="Never"
+                      BackgroundColor="White"
+                      SelectionMode="None"
+                      CachingStrategy="RecycleElementAndDataTemplate">
+                <!--ItemTemplate="{StaticResource menuDataTemplateSelector}">-->
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <sfEffectsView:SfEffectsView TouchDownEffects="Ripple"
+                                                         RippleAnimationDuration="200">
+                                <StackLayout>
+                                    <StackLayout Margin="0"
+                                                 x:Name="stk_MenuCell"
+                                                 HeightRequest="50"
+                                                 Orientation="Horizontal"
+                                                 Spacing="0">
+                                        <!--BackgroundColor="{Binding Path=IsExpanded, 
+                                                        Source={x:Reference sfExpander_menuItem},
+                                                        Converter={StaticResource boolToExpanderHederColorConverter}, ConverterParameter=0}"-->
+
+                                        <Image HeightRequest="28"
+                                               WidthRequest="28"
+                                               Source="{Binding image}"
+                                               Margin="30,0,0,0" />
+                                        <Label Text="{Binding name}"
+                                               FontFamily="UlmGroteskBold"
+                                               HorizontalOptions="StartAndExpand"
+                                               Margin="14,0,0,0"
+                                               FontSize="15"
+                                               VerticalTextAlignment="Center"
+                                               TextColor="{StaticResource ProductTitleTextColor}" />
+
+                                        <!--Text="{Binding MenuText}"-->
+
+                                        <!--TextColor="{Binding Path=IsExpanded, 
+                                                        Source={x:Reference sfExpander_menuItem},
+                                                        Converter={StaticResource boolToExpanderHederColorConverter}, ConverterParameter=1}"-->
+
+                                    </StackLayout>
+                                    <BoxView BackgroundColor="{StaticResource PlaceHolderColor}"
+                                             WidthRequest="4"
+                                             HeightRequest="1"
+                                             Margin="30,0,30,0" />
+                                </StackLayout>
+                                <sfEffectsView:SfEffectsView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="NewMenuItem_Tapped"
+                                                          CommandParameter="{Binding .}" />
+                                </sfEffectsView:SfEffectsView.GestureRecognizers>
+                            </sfEffectsView:SfEffectsView>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+               
+            </ListView>
+
+        </StackLayout>
+    </Shell.FlyoutContent>
+    <Shell.FlyoutFooter>
+       
+            <StackLayout Orientation="Horizontal"
+                         Spacing="20"
+                         Margin="30,20,0,20"
+                         BackgroundColor="White">
+
+                <Image Source="menu_logo.png"
+                       HeightRequest="50"
+                       WidthRequest="100">
+
+                </Image>
+                <Label  Text="DuLabs v1.0"
+                        FontFamily="UlmGroteskBold"
+                        x:Name="lbl_versionMaster"
+                        TextColor="{StaticResource TitleTextColor}"
+                        FontSize="13"
+                        Margin="0,15,0,0" />
+            </StackLayout>
+        
+    </Shell.FlyoutFooter>
+</Shell>

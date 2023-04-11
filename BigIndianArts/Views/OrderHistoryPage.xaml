@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dataTemplates="clr-namespace:BigIndianArts.Templates"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             xmlns:local="clr-namespace:BigIndianArts.ViewModels"
+             x:Class="BigIndianArts.Views.OrderHistoryPage">
+    <ContentPage.BindingContext>
+        <local:ShipmentViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     Padding="0"
+                     BackgroundColor="{StaticResource BodyBgColor}">
+
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <Label Text="Order History"
+                           Style="{StaticResource TitleBarLabel}"
+                           FontSize="19"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+                </StackLayout>
+            </Grid>
+            <!--/Title bar-->
+            <StackLayout>
+                <Frame HeightRequest="100"
+                       
+                       Margin="25,0,25,20"
+                       CornerRadius="10"
+                       BackgroundColor="White"
+                       HasShadow="True">
+
+                    <Grid HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          ColumnDefinitions="*,2*"
+                          RowDefinitions="85"
+                          Padding="5"
+                          Margin="5"
+                          ColumnSpacing="2">
+                        <Frame Margin="0"
+                               Padding="0"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               HasShadow="True">
+                            <Image Source="demo1.png"
+                                   Aspect="AspectFill"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand" />
+                        </Frame>
+                        <Grid HorizontalOptions="FillAndExpand"
+                              Grid.Column="1"
+                              Grid.Row="0"
+                              VerticalOptions="FillAndExpand"
+                              RowDefinitions="auto,auto,auto,auto"
+                              Padding="0"
+                              Margin="5">
+
+                            <StackLayout Orientation="Horizontal"
+                                         Grid.Row="0"
+                                         Margin="0,5,0,0">
+
+                                <Label Text="WingBack Chair"
+                                       FontFamily="UlmGroteskBold"
+                                       TextColor="{StaticResource ProductTitleTextColor}"
+                                       HorizontalOptions="Start"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalOptions="Start"
+                                       FontAttributes="Bold"
+                                       VerticalTextAlignment="Start"
+                                       FontSize="12" />
+                                <Label Text="$1500"
+                                       FontFamily="UlmGroteskBold"
+                                       TextColor="{StaticResource LightGreenColor}"
+                                       HorizontalOptions="EndAndExpand"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalOptions="Start"
+                                       FontAttributes="Bold"
+                                       VerticalTextAlignment="Start"
+                                       FontSize="12" />
+                            </StackLayout>
+                            <Label Text="Quantity: 1"
+                                   FontFamily="UlmGroteskBold"
+                                   Grid.Row="1"
+                                   TextColor="{StaticResource PlaceHolderColor}"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalOptions="Start"
+                                   VerticalTextAlignment="Start"
+                                   FontSize="10" />
+                            <Label Text="Color: Royal blue"
+                                   FontFamily="UlmGroteskBold"
+                                   Grid.Row="2"
+                                   TextColor="{StaticResource PlaceHolderColor}"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalOptions="Start"
+                                   VerticalTextAlignment="Start"
+                                   FontSize="10" />
+                            <!--<StackLayout Orientation="Horizontal"
+                                                     Spacing="0"
+                                                     Grid.Row="3">
+                                            <Image Source="delete.png"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Start" />
+                                            <Label Text="Remove"
+                                                   FontAttributes="Bold"
+                                                   TextColor="{StaticResource LightGreenColor}"
+                                                   HorizontalOptions="Start"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalOptions="Start"
+                                                   VerticalTextAlignment="Start"
+                                                   FontSize="10" />
+                                        </StackLayout>-->
+                        </Grid>
+
+                    </Grid>
+
+                </Frame>
+                <progressBar:SfStepProgressBar BindableLayout.ItemsSource="{Binding ShipmentInfoCollection}"
+                                               TitleAlignment="Start"
+                                               BackgroundColor="Transparent"
+                                               TitleSpace="10"
+                                               Orientation="Vertical"
+                                               x:Name="stepProgress"
+                                               Margin="25,0,25,20" >
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <progressBar:StepView x:Name="stepView"
+                                                  Margin="0,0,25,0"
+                                                  ProgressValue="{Binding ProgressValue}"
+                                                  Status="{Binding Status}">
+                                <progressBar:StepView.PrimaryFormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Title}"
+                                              FontFamily="UlmGroteskBold"
+                                              FontSize="Small" TextColor="{StaticResource LightGreenColor}"
+                                              FontAttributes="Bold" />
+                                        <Span Text="&#10;&#10;"
+                                              FontFamily="UlmGroteskBold" />
+                                        <Span Text="{Binding Description}"
+                                              FontSize="Micro"
+                                              FontFamily="UlmGroteskBold" />
+                                    </FormattedString>
+                                </progressBar:StepView.PrimaryFormattedText>
+                                <progressBar:StepView.SecondaryFormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Date}"
+                                              FontSize="Micro"
+                                              FontFamily="UlmGroteskBold"
+                                              FontAttributes="Bold" />
+                                        <Span Text="&#10;&#10;" />
+                                        <Span Text="        " />
+                                        <Span Text="{Binding Time}"
+                                              FontSize="Micro"
+                                              FontFamily="UlmGroteskBold"
+                                              TextColor="#b6b0b2" />
+                                    </FormattedString>
+                                </progressBar:StepView.SecondaryFormattedText>
+                            </progressBar:StepView>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </progressBar:SfStepProgressBar>
+               
+            </StackLayout>
+            <Frame HasShadow="True">
+                <Grid HorizontalOptions="FillAndExpand"
+                      VerticalOptions="End"
+                      RowDefinitions="auto,auto,auto,auto,auto"
+                      ColumnDefinitions="*,*"
+                      RowSpacing="2"
+                      Margin="25,0,25,0">
+                    <Frame  HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Grid.Row="0"
+                            Grid.Column="0" Grid.ColumnSpan="2">
+                        <rating:SfRating x:Name="rating"
+                                         Grid.Column="0"
+                                         ItemSize="40"
+                                         HorizontalOptions="FillAndExpand"
+                                         Value="0"
+                                         ReadOnly="False"
+                                         Precision="Exact">
+                            <rating:SfRating.RatingSettings>
+                                <rating:SfRatingSettings RatedFill="{StaticResource LightGreenColor}"
+                                                         UnRatedFill="Gray"
+                                                         RatedStroke="Black" />
+                            </rating:SfRating.RatingSettings>
+                        </rating:SfRating>
+                    </Frame>
+                    <Label Text="Subtotal"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource ProductTitleTextColor}"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           VerticalOptions="Start"
+                           FontFamily="UlmGroteskBold"
+                           VerticalTextAlignment="Start"
+                           FontSize="12" />
+                    <Label Text="50USD"
+                           FontFamily="UlmGroteskBold"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource ProductTitleTextColor}"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Start"
+                           VerticalOptions="Start"
+                           VerticalTextAlignment="Start"
+                           FontSize="12" />
+                    <Label Text="Delivery"
+                           FontFamily="UlmGroteskBold"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource ProductTitleTextColor}"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           VerticalOptions="Start"
+                           VerticalTextAlignment="Start"
+                           FontSize="12" />
+                    <Label Text="50USD"
+                           FontFamily="UlmGroteskBold"
+                           Grid.Row="2"
+                           Grid.Column="1"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource ProductTitleTextColor}"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Start"
+                           VerticalOptions="Start"
+                           VerticalTextAlignment="Start"
+                           FontSize="12" />
+
+                    <Label Text="Total"
+                           FontFamily="UlmGroteskBold"
+                           Grid.Row="3"
+                           Margin="0,10,0,0"
+                           Grid.Column="0"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource ProductTitleTextColor}"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           VerticalOptions="Start"
+                           VerticalTextAlignment="Start"
+                           FontSize="14" />
+                    <Label Text="50USD"
+                           FontFamily="UlmGroteskBold"
+                           Margin="0,10,0,0"
+                           Grid.Row="3"
+                           Grid.Column="1"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource LightGreenColor}"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Start"
+                           VerticalTextAlignment="Start"
+                           FontSize="14" />
+                    <Button Text="Next"
+                            FontFamily="UlmGroteskBold"
+                            Margin="0,0,0,0"
+                            TextTransform="None"
+                            TextColor="White"
+                            BackgroundColor="{StaticResource LightGreenColor}"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            CornerRadius="3"
+                            HeightRequest="50"
+                            Clicked="next_button_Clicked" />
+                </Grid>
+
+
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

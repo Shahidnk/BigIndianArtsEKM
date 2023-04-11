@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+             xmlns:utility1="clr-namespace:BigIndianArts.CustomControls"
+             xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             x:Class="BigIndianArts.InternalMainPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid VerticalOptions="FillAndExpand"
+                  RowDefinitions="70,Auto"
+                  ColumnDefinitions="120,Auto"
+                  BackgroundColor="{StaticResource BodyBgColor}"
+                  Margin="0"
+                  Padding="0">
+                <!--<StackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand"
+                         Grid.Row="0"
+                         Grid.RowSpan="3"
+                         Grid.Column="0"
+                         BackgroundColor="{StaticResource ThemebgColor}" />-->
+                <!--<Image Source="bashboard_bg.png"
+                   Aspect="AspectFill"
+                   VerticalOptions="StartAndExpand"
+                   Grid.Row="0"
+                   Grid.RowSpan="3"
+                   Grid.ColumnSpan="2"
+                   Grid.Column="0"
+                   Margin="{OnPlatform Android='0', iOS='0,-20,0,0'}" />-->
+                <!--NavBar Section-->
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="CenterAndExpand"
+                             Orientation="Horizontal"
+                             Margin="15,15,15,0"
+                             Grid.ColumnSpan="2"
+                             Grid.Column="0">
+                    <Image Source="menu.png"
+                           HorizontalOptions="Start"
+                           HeightRequest="28"
+                           WidthRequest="28">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="homemenutapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="{AppThemeBinding Light=logohome.png, Dark=darklogo.png}"
+                           HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" WidthRequest="200"  />
+                    <!--<Image Source="search.png"
+                       HorizontalOptions="EndAndExpand"
+                       HeightRequest="22"
+                       WidthRequest="22" />-->
+                    <Grid HorizontalOptions="EndAndExpand"
+                          VerticalOptions="Center"
+                          Margin="0,0">
+                        <ImageButton Source="bell.png"
+                                     CornerRadius="5"
+                                     HorizontalOptions="Start"
+                                     VerticalOptions="Center"
+                                     Clicked="ImageNotifyButton_Clicked"
+                                     BackgroundColor="Transparent"
+                                     Padding="5,10,5,10"
+                                     HeightRequest="40"
+                                     WidthRequest="40" />
+                        <Grid HorizontalOptions="Center"
+                              Margin="20,0,0,0">
+                            <Image Source="circle_red.png"
+                                   HeightRequest="25"
+                                   WidthRequest="25"
+                                   Aspect="AspectFit"
+                                   Margin="0,-18,-5,0" />
+                            <Label x:Name="lbl_notificationCount"
+                                   TextColor="White"
+                                   Text="0"
+                                   FontFamily="UlmGroteskBold"
+                                   FontSize="10"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Margin="0,-17,-5,0" />
+                        </Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ImageNotifyButton_Clicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid IsVisible="true">
+                        <sfavatar:SfAvatarView ImageSource="avatar"
+                                               BackgroundColor="Gray"
+                                               ContentType="Custom"
+                                               AvatarShape="Circle"
+                                               AvatarSize="Large"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="CenterAndExpand"
+                                               BorderColor="{StaticResource ThemeColor}"
+                                               BorderWidth="2"
+                                               HasShadow="False">
+                            <sfavatar:SfAvatarView.GestureRecognizers>
+                                <TapGestureRecognizer />
+                            </sfavatar:SfAvatarView.GestureRecognizers>
+                        </sfavatar:SfAvatarView>
+                        <sfavatar:SfAvatarView x:Name="sfAvatar_profileImg"
+                                               BackgroundColor="Transparent"
+                                               ContentType="Custom"
+                                               AvatarShape="Circle"
+                                               AvatarSize="Large"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="CenterAndExpand"
+                                               BorderColor="{StaticResource ThemeColor}"
+                                               BorderWidth="2"
+                                               HasShadow="False">
+                            <sfavatar:SfAvatarView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureProfileRecognizer_Tapped" />
+                            </sfavatar:SfAvatarView.GestureRecognizers>
+                        </sfavatar:SfAvatarView>
+                        <sfEffectsView:SfEffectsView TouchDownEffects="Ripple"
+                                                     CornerRadius="5">
+                            <sfEffectsView:SfEffectsView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureProfileRecognizer_Tapped" />
+                            </sfEffectsView:SfEffectsView.GestureRecognizers>
+                        </sfEffectsView:SfEffectsView>
+                    </Grid>
+                </StackLayout>
+                <!--<ScrollView    HorizontalOptions="StartAndExpand"
+                               Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               Grid.Column="0"
+                               VerticalOptions="FillAndExpand">-->
+                    <StackLayout  HorizontalOptions="StartAndExpand"
+                                  Grid.Row="1"
+                                  Grid.ColumnSpan="2"
+                                  Grid.Column="0"
+                                  VerticalOptions="FillAndExpand">
+                        <StackLayout   Margin="20,0,0,0"
+                                       Padding="0"
+                                       VerticalOptions="FillAndExpand">
+                          
+                       
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Label x:Name="lbl_role"
+                                   Text="Administrator"
+                                   Style="{StaticResource MainPageNameLabel}"
+                                   FontSize="18"></Label>
+                            <Label x:Name="lbl_nmae"
+                                       Text="Administrator"
+                                   Style="{StaticResource MainPageNameLabel}"
+                                   FontSize="20"></Label>
+                            
+                           
+                            <Label x:Name="lbl_amount" Margin="0,10,0,0"
+                                   Style="{StaticResource MainPageNameLabel}"
+                                   FontSize="10">  <Label.FormattedText>
+                                <FormattedString>
+                                        <Span Text="₹"
+                                              TextColor="Black"
+                                              FontSize="18"
+                                              FontFamily="UlmGroteskExtrabold"></Span>
+                                        <Span x:Name="lbl_amnt"
+                                              FontSize="18"
+                                              TextColor="Black"
+                                              FontFamily="UlmGroteskRegular"></Span>
+                                </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="(Earnings)"
+                                   x:Name="lbl_what" TextColor="Black"
+                                   Style="{StaticResource MainPageNameLabel}"
+                                   FontSize="14" />
+                        </StackLayout>
+                            <Frame BackgroundColor="White"
+                                   CornerRadius="10"
+                                   Margin="0,25,20,35"
+                                   HasShadow="True"
+                                   VerticalOptions="FillAndExpand"
+                                   HorizontalOptions="FillAndExpand"
+                                   Padding="0"
+                                   x:Name="frm_search" IsVisible="false">
+                                <Grid VerticalOptions="FillAndExpand"
+                                      Padding="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+                                    <ImageButton Source="search"
+                                                 VerticalOptions="CenterAndExpand"
+                                                 BackgroundColor="Transparent"
+                                                 Clicked="OnclickSerchbutton"
+                                                 HorizontalOptions="End"
+                                                 HeightRequest="30"
+                                                 Grid.Column="0"
+                                                 Margin="20,0,0,0" />
+                                    <utility1:BorderlessEntry  x:Name="ent_SearchBox"
+                                                               VerticalOptions="EndAndExpand"
+                                                               Placeholder="Search"
+                                                               Grid.Column="1"
+                                                               FontSize="18"
+                                                               FontFamily="UlmGroteskBold"
+                                                               TextChanged="Onsearching"
+                                                               PlaceholderColor="{StaticResource PlaceHolderColor}"
+                                                               TextColor="{StaticResource TitleTextColor}"
+                                                               IsHideLine="True"
+                                                               VerticalTextAlignment="Start"
+                                                               Margin="10,0,0,3" />
+                                    <Grid Padding="0"
+                                          Margin="0"
+                                          Grid.Column="2">
+                                        <ImageButton x:Name="btn_toFocusSearch"
+                                                     Source="close_grey"
+                                                     Opacity="0"
+                                                     VerticalOptions="CenterAndExpand"
+                                                     BackgroundColor="Transparent"
+                                                     Clicked="OnFocusSearchButtonClicked"
+                                                     HorizontalOptions="End"
+                                                     HeightRequest="40"
+                                                     WidthRequest="40"
+                                                     Margin="0,0,13,0"
+                                                     Padding="10" />
+                                        <ImageButton x:Name="btn_close"
+                                                     IsVisible="false"
+                                                     Source="close_grey"
+                                                     Opacity="0.5"
+                                                     VerticalOptions="CenterAndExpand"
+                                                     BackgroundColor="Transparent"
+                                                     Clicked="OnClearSearchClicked"
+                                                     HorizontalOptions="End"
+                                                     HeightRequest="42"
+                                                     WidthRequest="42"
+                                                     Margin="0,0,13,0"
+                                                     Padding="12" />
+                                    </Grid>
+                                </Grid>
+                            </Frame>
+                          
+                        </StackLayout>
+                       
+                    <CollectionView x:Name="_collection"
+                                    VerticalScrollBarVisibility="Never"
+                                    Margin="12,5">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                                             Span="2" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                
+                                <Grid Padding="5"
+                                      VerticalOptions="StartAndExpand"
+                                      Margin="0">
+                                    <Frame VerticalOptions="FillAndExpand"
+                                           Padding="5"
+                                           BackgroundColor="White"
+                                           Margin="0"
+                                           HasShadow="False"
+                                           CornerRadius="15"
+                                           HeightRequest="120"
+                                          
+                                          >
+                                        <Grid>
+                                            <Grid HorizontalOptions="End"
+                                                  Margin="0"
+                                                  Padding="0,0,0,0"
+                                                  VerticalOptions="StartAndExpand"
+                                                  IsVisible="{Binding CountFieldVisibility}">
+                                                <Image  Source="circle.png"
+                                                        HeightRequest="27"
+                                                        WidthRequest="27"
+                                                        Aspect="AspectFit"
+                                                        Margin="0,0,0,0" />
+                                                <Label Text="{Binding countstring}"
+                                                       TextColor="Black"
+                                                       FontSize="12"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center"
+                                                       Margin="0,0,0,0" />
+                                            </Grid>
+                                            <Grid RowDefinitions="*,*"
+                                                  HorizontalOptions="Center"
+                                                  VerticalOptions="End"
+                                                  Margin="0,0,0,0"
+                                                  Padding="0,20,0,0">
+                                                <Grid HorizontalOptions="Center"
+                                                      Margin="0,0,0,0"
+                                                      Grid.Row="0"
+                                                      Padding="0,0,0,0"
+                                                      VerticalOptions="Center"
+                                                      IsVisible="true">
+                                                    <Grid>
+                                                        <Image Source="{Binding icon}"
+                                                               IsVisible="{Binding NoImageVisible}"
+                                                               BackgroundColor="Transparent"
+                                                               WidthRequest="40"
+                                                               HeightRequest="40"
+                                                               Aspect="AspectFill"
+                                                               Margin="0,-20,0,0"
+                                                               VerticalOptions="Center"
+                                                               HorizontalOptions="Center" />
+                                                        <!--<Image IsVisible="{Binding MainVisible}"
+                                                               BackgroundColor="Transparent"
+                                                               WidthRequest="77"
+                                                               HeightRequest="77"
+                                                               Aspect="AspectFill"
+                                                               Margin="0,-20,0,0"
+                                                               VerticalOptions="Center"
+                                                               HorizontalOptions="Center">
+                                                            <Image.Source>
+                                                                <UriImageSource Uri="{Binding customIcon}"
+                                                                                CacheValidity="1"
+                                                                                CachingEnabled="true" />
+                                                            </Image.Source>
+                                                        </Image>-->
+                                                    </Grid>
+                                                </Grid>
+                                                <Label Text="{Binding name}"
+                                                       Grid.Row="1" FontFamily="UlmGroteskRegular"
+                                                       TextTransform="None"
+                                                       HorizontalTextAlignment="Center"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Start"
+                                                       Padding="0,10,0,10"
+                                                      />
+                                            </Grid>
+                                        </Grid>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ServiceListItem_Tapped"
+                                                                  CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.Footer>
+                            <StackLayout BackgroundColor="Transparent"
+                                         HeightRequest="20" />
+                        </CollectionView.Footer>
+                        <CollectionView.Header>
+                            <StackLayout BackgroundColor="Transparent"
+                                         HeightRequest="20" />
+                        </CollectionView.Header>
+                    </CollectionView>
+                </StackLayout>
+                    <!--/NavBar Section-->
+                <!--</ScrollView>-->
+            </Grid>
+            <Image Source="plus"
+                   Margin="20,10,20,20"
+                   HeightRequest="60" IsVisible="false"
+                   WidthRequest="60" x:Name="btn_createOrder"
+                   VerticalOptions="EndAndExpand"
+                   HorizontalOptions="EndAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CreateOrder_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BigIndianArts.Views.ProductDetailPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+             xmlns:syncfusion1="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             ios:Page.UseSafeArea="true"
+             ios:Application.EnableAccessibilityScalingForNamedFontSizes="false"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="BannerTemplate">
+                <Frame HasShadow="True"
+                       CornerRadius="10"
+                       Padding="0" Margin="5">
+                    <ImageButton  CornerRadius="10"
+                                 Margin="5" Padding="0"
+                                 Source="{Binding Image}"
+                                 Aspect="AspectFill"
+                                 Clicked="BannerImg_clicked"
+                                 CommandParameter="{Binding .}"
+                                 BackgroundColor="{StaticResource BodyBgColor}">
+
+                    </ImageButton>
+                </Frame>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                     Margin="0"
+                     Padding="0"
+                     BackgroundColor="{StaticResource BodyBgColor}">
+
+            <!--Title bar-->
+            <Grid Margin="0"
+                  Padding="0"
+                  RowDefinitions="60">
+                <!--<Image Source="header_bg_small.png"
+                       Aspect="AspectFill" />-->
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Padding="0"
+                             Margin="15,15,15,0">
+                    <ImageButton Source="back.png"
+                                 Margin="0,0,0,0"
+                                 Clicked="ImageBackButton_Clicked"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <Label Text="Product Details"
+                           Style="{StaticResource TitleBarLabel}"
+                           FontSize="19"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center" />
+                    <!--<Image Source="action_btn_hor.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,0,0" />-->
+                </StackLayout>
+            </Grid>
+            <!--/Title bar-->
+            <ScrollView>
+                <Grid BackgroundColor="Transparent">
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="275" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                   
+
+                            <syncfusion:SfRotator x:Name="sfRotator_Home"
+                                               Grid.Row="0"
+                                               Margin="25,20,25,20"
+                                               BackgroundColor="Transparent"
+                                               DotPlacement="Default"
+                                               DotsBorderColor="white" 
+                                               EnableLooping="False"
+                                               EnableAutoPlay="False"
+                                               HorizontalOptions="Center"
+                                               ItemTemplate="{StaticResource BannerTemplate}"
+                                              
+                                               NavigationStripMode="Dots"
+                                               NavigationDelay="3000"
+                                               NavigationDirection="Horizontal"
+                                               NavigationStripPosition="Bottom"
+                                               SelectedDotColor="{StaticResource ThemeColor}"
+                                              UnselectedDotColor="Gray"
+                                               VerticalOptions="StartAndExpand" />
+
+                    <Grid HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          RowDefinitions="auto,auto,auto,auto"
+                          Grid.Row="1"
+                          RowSpacing="2"
+                          Margin="25,20,25,20">
+                        <Grid ColumnDefinitions="*,auto"
+                                     HorizontalOptions="FillAndExpand"
+                                     Grid.Row="0">
+                        <Label Text="Nashville Armcher"
+                                   Margin="0,10,0,10"
+                                   Grid.Column="0"
+                                   FontFamily="UlmGroteskBold"
+                               TextColor="{StaticResource ProductTitleTextColor}"
+                               FontSize="20"
+                               HorizontalTextAlignment="Start"
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="StartAndExpand" />
+                            <Image Source="heart.png"
+                                   HeightRequest="25"
+                                   WidthRequest="25"
+                                   Grid.Column="1"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="EndAndExpand"
+                                   x:Name="img_WishlistWhite">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="WishList_Clicked">
+
+                                    </TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Image Source="heartred.png"
+                                   HeightRequest="25"
+                                   WidthRequest="25"
+                                   Grid.Column="1"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="EndAndExpand"
+                                   x:Name="img_Wishlistred">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="WishList_Clicked">
+
+                                    </TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                        <Label Text="$1500"
+                               Margin="0,0,0,20"
+                               FontFamily="UlmGroteskBold"
+                               TextColor="{StaticResource LightGreenColor}"
+                               FontSize="20"
+                               HorizontalTextAlignment="Start"
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="StartAndExpand"
+                               Grid.Row="1" />
+                        
+                        <StackLayout Orientation="Horizontal" Margin="0,20,0,20"
+                                     Grid.Row="2"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand">
+                            <StackLayout Spacing="1" HorizontalOptions="StartAndExpand">
+                                <Label Text="Color:"
+                                       FontFamily="UlmGroteskBold"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource ProductTitleTextColor}"
+                                       HorizontalOptions="Start"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalOptions="Start"
+                                       VerticalTextAlignment="Start"
+                                       FontSize="12" />
+                                <syncfusion1:SfRadioGroup x:Name="rb_colorGroup" Margin="0,5,0,0">
+                                    <StackLayout Orientation="Horizontal"
+                                                 
+                                                 Padding="0">
+                                        <syncfusion1:SfRadioButton x:Name="rb_VehicleAcceptedYes"
+                                                                  CheckedColor="black" 
+                                                                   Padding="0"
+                                                                   IsChecked="True"
+                                                                   UncheckedColor="LightGray"
+                                                                   BorderWidth="1"
+                                                                   TextColor="{StaticResource TitleTextColor}"
+                                                                   />
+                                        <syncfusion1:SfRadioButton x:Name="rb_VehicleAcceptedNo"
+                                                                   CheckedColor="DarkRed"
+                                                                   UncheckedColor="LightGray"
+                                                                   Padding="0"
+                                                                   ControlSize="5"
+                                                                   TextColor="{StaticResource TitleTextColor}"
+                                                                    />
+                                        <syncfusion1:SfRadioButton x:Name="rb_VehicleAcceptedDeviation"
+                                                                   CheckedColor="White"
+                                                                   UncheckedColor="LightGray"
+                                                                   Padding="0"
+                                                                   ControlSize="5"
+                                                                   TextColor="{StaticResource TitleTextColor}"
+                                                                    />
+                                    </StackLayout>
+                                </syncfusion1:SfRadioGroup>
+                            </StackLayout>
+                            <StackLayout Spacing="1"
+                                         HorizontalOptions="EndAndExpand">
+                                <Label Text="Quantity:"
+                                       TextColor="{StaticResource ProductTitleTextColor}"
+                                       FontFamily="UlmGroteskBold"
+                                       HorizontalOptions="Start"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalOptions="Start" FontAttributes="Bold"
+                                       VerticalTextAlignment="Start"
+                                       FontSize="12" />
+                                <numeric:SfNumericUpDown x:Name="numericUpDown"
+                                                         Value="1"
+                                                         FontFamily="UlmGroteskBold"
+                                                         TextColor="{StaticResource LightGreenColor}"
+                                                         IsEditable="False"
+                                                         FontAttribute="Bold"
+                                                         TextAlignment="Center"
+                                                         SpinButtonAlignment="Both"
+                                                         Minimum="1"
+                                                         Maximum="10"
+                                                         MaximumDecimalDigits="0"
+                                                         AutoReverse="True">
+
+                                    <numeric:SfNumericUpDown.IncrementButtonSettings>
+                                        <numeric:UpDownButtonSettings 
+                                                                      BackgroundColor="Transparent"
+                                                                      >
+                                            <numeric:UpDownButtonSettings.ButtonView>
+                                                <Grid HeightRequest="20"
+                                                      WidthRequest="20">
+                                                    <Image Source="plus.png"
+                                                           Aspect="AspectFit" />
+                                                </Grid>
+                                            </numeric:UpDownButtonSettings.ButtonView>
+                                        </numeric:UpDownButtonSettings>
+                                    </numeric:SfNumericUpDown.IncrementButtonSettings>
+                                    <numeric:SfNumericUpDown.DecrementButtonSettings>
+                                        <numeric:UpDownButtonSettings BackgroundColor="Transparent">
+                                            <numeric:UpDownButtonSettings.ButtonView>
+                                                <Grid HeightRequest="20"
+                                                      WidthRequest="20">
+                                                    <Image Source="minus.png"
+                                                           Aspect="AspectFit" />
+                                                </Grid>
+                                            </numeric:UpDownButtonSettings.ButtonView>
+                                        </numeric:UpDownButtonSettings>
+                                    </numeric:SfNumericUpDown.DecrementButtonSettings>
+                                </numeric:SfNumericUpDown>
+                            </StackLayout>
+                        </StackLayout>
+                        <Label Text="Two days ago it dawned on the government that even though the President had approved their nominations a fortnight ago, Rekha and Tendulkar had not sent letters of acceptance. Urgent phone calls were then made to them. Rekha took oath as a Rajya Sabha MP on Tuesday"
+                               TextColor="{StaticResource ProductTitleTextColor}"
+                               FontFamily="UlmGroteskBold"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"
+                               VerticalOptions="StartAndExpand" LineHeight="1"
+                               VerticalTextAlignment="Start"
+                               FontSize="12"
+                               Grid.Row="3"
+                               Margin="0,0,0,10" />
+                        <BoxView WidthRequest="5" Margin="0,25,0,0"
+                                 HeightRequest="1"
+                                 Grid.Row="3"
+                                 VerticalOptions="EndAndExpand"
+                                 BackgroundColor="{StaticResource PlaceHolderColor}" />
+
+                    </Grid>
+                    <Grid ColumnDefinitions="*"
+                          RowDefinitions="auto,auto,auto"
+                          Grid.Row="2"
+                          Margin="25,0,25,0">
+                        <StackLayout Orientation="Horizontal"
+                                     Grid.Row="0"
+                                     Grid.Column="0">
+                            <Label Text="Deliver to"
+                                   TextColor="{StaticResource ProductTitleTextColor}"
+                                   FontFamily="UlmGroteskBold"
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalOptions="Start"
+                                   VerticalTextAlignment="End"
+                                   FontSize="14" />
+                            <!--<Button Text="Review" Padding="0,-25,0,0"
+                                    TextColor="{StaticResource LightGreenColor}"
+                                    CornerRadius="5"
+                                    BackgroundColor="{StaticResource BodyBgColor}"
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="StartAndExpand"
+                                    FontFamily="UlmGroteskBold"
+                                    TextTransform="None" />-->
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     Grid.Row="1"
+                                     Grid.Column="0">
+                            
+                           
+                            <Label Text="Nikhil,raxcscdcavdx"
+                                   TextColor="{StaticResource ProductTitleTextColor}"
+                                   FontFamily="UlmGroteskBold"
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalOptions="Start"
+                                   VerticalTextAlignment="Start"
+                                   FontSize="16" />
+                            <Label Text="Nikhil,raxcscdcavdx dfdfaefasdfasf"
+                                   TextColor="{StaticResource ProductTitleTextColor}"
+                                   FontFamily="UlmGroteskBold"
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalOptions="Start"
+                                   VerticalTextAlignment="Start"
+                                   FontSize="12" />
+                        </StackLayout>
+                        <Button Text="Change"
+                                Grid.Row="3"
+                                Clicked="AddToCartButton"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="EndAndExpand"
+                                FontFamily="UlmGroteskBold"
+                                BackgroundColor="{StaticResource LightGreenColor}"
+                                TextColor="White"
+                                TextTransform="Uppercase"
+                                Margin="0,0,0,10" />
+                        <BoxView WidthRequest="5"
+                                 Margin="0,25,0,0"
+                                 HeightRequest="1"
+                                 Grid.Row="3"
+                                 VerticalOptions="EndAndExpand"
+                                 BackgroundColor="{StaticResource PlaceHolderColor}" />
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*"
+                          RowDefinitions="auto,auto,auto,auto"
+                          Grid.Row="3"
+                          Margin="25,20,25,20">
+                        <StackLayout Orientation="Horizontal"
+                                     Grid.Row="0"
+                                     Grid.Column="0">
+                            <Label Text="Rating &amp; Reviews"
+                                   TextColor="{StaticResource ProductTitleTextColor}"
+                                   FontFamily="UlmGroteskBold"
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalOptions="Start"
+                                   VerticalTextAlignment="End"
+                                   FontSize="14" />
+                            <!--<Button Text="Review" Padding="0,-25,0,0"
+                                    TextColor="{StaticResource LightGreenColor}"
+                                    CornerRadius="5"
+                                    BackgroundColor="{StaticResource BodyBgColor}"
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="StartAndExpand"
+                                    FontFamily="UlmGroteskBold"
+                                    TextTransform="None" />-->
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     Grid.Row="1"
+                                     Grid.Column="0">
+                            <rating:SfRating x:Name="rating"
+                                            
+                                             Grid.Row="0"
+                                             ItemSize="20"
+                                             Value="4.2"
+                                             ReadOnly="True"
+                                             Precision="Exact">
+                                <rating:SfRating.RatingSettings>
+                                    <rating:SfRatingSettings RatedFill="{StaticResource LightGreenColor}"
+                                                             UnRatedFill="Gray"
+                                                             RatedStroke="Black" />
+                                </rating:SfRating.RatingSettings>
+                            </rating:SfRating>
+                            <Label Text="4.2"
+                                   TextColor="{StaticResource ProductTitleTextColor}"
+                                   FontFamily="UlmGroteskBold"
+                                   HorizontalOptions="EndAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalOptions="Start"
+                                   VerticalTextAlignment="Start"
+                                   FontSize="20" />
+                        </StackLayout>
+                        <StackLayout BackgroundColor="Transparent"
+                                     x:Name="stk_cartItems"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand"
+                                     Grid.Row="2">
+
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Margin="0,0,0,0"
+                                           HeightRequest="100"
+                                           Padding="0"
+                                           CornerRadius="10"
+                                           BackgroundColor="{Binding FrameBackground}">
+                                       
+                                       
+                                           
+                                            <Grid HorizontalOptions="FillAndExpand"
+                                                  Grid.Column="1"
+                                                  Grid.Row="0"
+                                                  VerticalOptions="FillAndExpand"
+                                                  RowDefinitions="auto,auto,auto,auto" 
+                                                  
+                                                  Padding="0"
+                                                  Margin="5">
+                                                <StackLayout Orientation="Horizontal"
+                                                             Grid.Row="0">
+                                                    <Frame BackgroundColor="{StaticResource LightGreenColor}"
+                                                           HorizontalOptions="Start" Padding="1" WidthRequest="20">
+                                                    <StackLayout Orientation="Horizontal"
+                                                                 Spacing="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                                        <Image Source="star.png" HeightRequest="5" WidthRequest="5"
+                                                           HorizontalOptions="Start"
+                                                               VerticalOptions="CenterAndExpand" />
+                                                        <Label Text="5"
+                                                               TextColor="White"
+                                                               HorizontalOptions="FillAndExpand"
+                                                               HorizontalTextAlignment="Start"
+                                                               VerticalOptions="CenterAndExpand"
+                                                               FontAttributes="Bold"
+                                                               FontFamily="UlmGroteskBold"
+                                                               VerticalTextAlignment="Start"
+                                                               FontSize="8" />
+                                                    </StackLayout>
+                                                </Frame>
+                                                    <Label Text="Fabulas"
+                                                           TextColor="{StaticResource ProductTitleTextColor}"
+                                                           HorizontalOptions="Start"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalOptions="Start"
+                                                           FontAttributes="Bold"
+                                                           FontFamily="UlmGroteskBold"
+                                                           VerticalTextAlignment="Start"
+                                                           FontSize="14" />
+                                                    
+                                                </StackLayout>
+                                                <Label Text="Brand new recieved from kjjdjd bnfnvdlsdmflkdmfl"
+                                                       FontFamily="UlmGroteskBold"
+                                                       Grid.Row="1"
+                                                       TextColor="{StaticResource PlaceHolderColor}"
+                                                       HorizontalOptions="Start"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalOptions="Start"
+                                                       VerticalTextAlignment="Start"
+                                                       FontSize="10" />
+                                                <Label Text="Nikhil Chandigrah"
+                                                       FontFamily="UlmGroteskBold"
+                                                       Grid.Row="2"
+                                                       TextColor="{StaticResource PlaceHolderColor}"
+                                                       HorizontalOptions="Start"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalOptions="Start"
+                                                       VerticalTextAlignment="Start"
+                                                       FontSize="10" />
+                                                <StackLayout Orientation="Horizontal"
+                                                             Spacing="0"
+                                                             Grid.Row="3">
+                                                    <!--<Image Source="delete.png"
+                                                           HorizontalOptions="Start"
+                                                           VerticalOptions="Start" />-->
+                                                    <Label Text="6 Month ago"
+                                                           FontFamily="UlmGroteskBold"
+                                                           FontAttributes="Bold"
+                                                           TextColor="{StaticResource LightGreenColor}"
+                                                           HorizontalOptions="Start"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalOptions="Start"
+                                                           VerticalTextAlignment="Start"
+                                                           FontSize="10" />
+                                                </StackLayout>
+                                            </Grid>
+
+                                       
+
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="0,10,0,10"
+                                     Spacing="-1"
+                                     HorizontalOptions="FillAndExpand"
+                                     Grid.Row="3">
+                            <Button Text="More"
+                                    
+                                    Clicked="AddToCartButton"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="EndAndExpand"
+                                    FontFamily="UlmGroteskBold"
+                                    BackgroundColor="White"
+                                    TextColor="{StaticResource LightGreenColor}"
+                                    TextTransform="Uppercase"
+                                    Margin="0,0,0,10" />
+                            <Button Text="Write"
+                                   
+                                    Clicked="AddToCartButton"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="EndAndExpand"
+                                    FontFamily="UlmGroteskBold"
+                                    BackgroundColor="{StaticResource LightGreenColor}"
+                                    TextColor="White"
+                                    TextTransform="Uppercase"
+                                    Margin="0,0,0,10" />
+                        </StackLayout>
+                        <BoxView WidthRequest="5"
+                                 Margin="0,25,0,0"
+                                 HeightRequest="1"
+                                 Grid.Row="3"
+                                 VerticalOptions="EndAndExpand"
+                                 BackgroundColor="{StaticResource PlaceHolderColor}" />
+                    </Grid>
+
+                </Grid>
+
+                   
+            </ScrollView>
+            <StackLayout Orientation="Horizontal"
+                         Spacing="-1"
+                         HorizontalOptions="FillAndExpand">
+                <Button Text="Add to Cart"
+                        Clicked="AddToCartButton"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="EndAndExpand"
+                        FontFamily="UlmGroteskBold"
+                        BackgroundColor="white"
+                        TextColor="{StaticResource LightGreenColor}"
+                        TextTransform="Uppercase"
+                        HeightRequest="60" />
+                <Button Text="Buy Now" Clicked="AddToCartButton"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="EndAndExpand"
+                   
+                    FontFamily="UlmGroteskBold"
+                   
+                    BackgroundColor="{StaticResource LightGreenColor}"
+                    TextColor="White"
+                    TextTransform="Uppercase"
+                        HeightRequest="60" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
